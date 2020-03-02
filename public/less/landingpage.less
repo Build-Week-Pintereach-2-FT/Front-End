@@ -1,0 +1,69 @@
+body{
+    background-image: url("../images/postits.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+
+    .container{
+        .flexDisplay(column, center, center);
+        height: 100vh;
+        width: 100%;
+
+        .login{
+            .flexDisplay(column, space-evenly, center);
+            background: white;
+            border-radius: 10px;
+            width: 484px;
+            height: 40vh;
+
+            h1{
+                font-size: 2rem;
+            }
+
+            .blue{
+                color: white;
+                background: rgb(0, 140, 255);
+            }
+
+            .grey{
+                color:black;
+                background: rgb(185, 185, 185);
+            }
+
+            a{
+                .flexDisplay(row, center, center);
+                width: 70%;
+                height: 7.5vh;
+                border-radius:10px;
+                text-decoration: none;
+
+                &:hover{
+                    opacity: .5;
+                }
+            }
+        }
+
+    }
+
+    footer{
+        .flexDisplay(row, center, center);
+        width: 100%;
+        
+        nav{
+            .flexDisplay(row, space-between, center);
+            width: 30%;
+            a{
+                text-decoration: none;
+                color: black;
+
+                &:hover{
+                    opacity: .5;
+                }
+
+            }
+        }
+    }
+}
+
+
