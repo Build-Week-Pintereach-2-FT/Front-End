@@ -25,3 +25,20 @@ export const login = (item) => dispatch => {
     //         })
 
 }
+
+export const createNewUser = (item) => dispatch => {
+    console.log("createNewUser: ", item);
+
+    //dispatch({type: FETCHING_DATA})
+
+    // axios
+    //     .post('', item)
+    //         .then(response => {
+    //             dispatch({type: NEW_USER}, payload: response.data)
+    //             history.push(`/signin`)
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //             dispatch({type: SET_ERROR, payload: error.data})
+    //         })
+}

@@ -1,13 +1,16 @@
 import React from "react";
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import {connect} from 'react-redux';
+import {createNewUser} from "../actions/actions"
 
-export default function SignUp () {
+function SignUp (props) {
 
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
         
+        props.createNewUser(data); //send data to createNewUser action
     }
 
     return (
@@ -42,3 +45,13 @@ export default function SignUp () {
     );
 
 }
+
+const mapStateToProps = state => {
+    return {
+      isLoading: state.isLoading,
+      user: state.user,
+      error: state.error
+    }
+  }
+  
+  export default connect(mapStateToProps, {createNewUser})(SignUp)
