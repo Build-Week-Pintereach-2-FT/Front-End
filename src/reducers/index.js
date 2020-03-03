@@ -19,7 +19,8 @@ export const reducer = (state = initialState, action) => {
         case FETCHING_DATA:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                error: null
             }
 
         //set error
@@ -27,7 +28,16 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload,
-                isLoading: false
+                isLoading: false,
+            }
+            
+        //set user upon login
+        case LOGIN: 
+            return {
+                ...state,
+                user: action.payload,
+                isLoading: false,
+                error: null
             }
         default:
              return state
