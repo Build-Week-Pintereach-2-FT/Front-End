@@ -8,3 +8,20 @@ export const NEW_USER = "NEW_USER";
 export const EDIT_USER = "EDIT_USER";
 //fetching arrays/objects/etc (however backend is set up) and then setting that state as well
 
+export const login = (item) => dispatch => {
+    console.log('LOGIN: ', item);
+    //dispatch({type: FETCHING_DATA})
+
+    // axios
+    //     .post('', item)
+    //         .then(response => {
+    //             console.log(response)
+    //             dispatch({type: LOGIN, payload: response.data})
+    //             //set token to local storage here as well
+    //         })   
+    //         .catch(error => {
+    //             console.log(error)
+    //             dispatch({type: SET_ERROR, payload: error.data})
+    //         })
+
+}

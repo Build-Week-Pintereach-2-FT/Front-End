@@ -3,6 +3,7 @@ import { Route, Link } from "react-router-dom";
 import './App.css';
 import SignUp from "./components/sign-up";
 import HomePage from "./components/home-page";
+import SignIn from "./components/sign-in";
 
 function App() {
   return (

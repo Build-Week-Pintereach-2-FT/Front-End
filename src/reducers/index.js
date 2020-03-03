@@ -29,5 +29,7 @@ export const reducer = (state = initialState, action) => {
                 error: action.payload,
                 isLoading: false
             }
+        default:
+             return state
     }
 }
