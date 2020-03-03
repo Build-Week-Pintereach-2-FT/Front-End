@@ -7,13 +7,15 @@ export default function BoardList (props) {
     return (
         <div>
             <BoardForm/>
-            {/* {props.boards.map(boardEl => {
+            <div>
+            {props.boards.map(boardEl => (
                 <div key={boardEl.id}>
                     <Link to={`/BoardList/${boardEl.id}`}>
-                        <p>{boardEl.name}</p>
+                        <p>MapName {boardEl.name}</p>
                     </Link>
                 </div>
-            })} */}
+            ))}
+            </div>
         </div>
     )
 
