@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 
 import HomePage from "./components/home-page";
+import SignIn from "./components/sign-in";
 
 function App() {
   return (
