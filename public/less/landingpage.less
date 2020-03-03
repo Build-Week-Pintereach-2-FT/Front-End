@@ -2,12 +2,13 @@ body{
     background-image: url("../images/postits.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     height: 100vh;
     width: 100%;
 
     .container{
         .flexDisplay(column, center, center);
-        height: 100vh;
+        height: 95vh;
         width: 100%;
 
         .login{
@@ -16,6 +17,10 @@ body{
             border-radius: 10px;
             width: 484px;
             height: 40vh;
+
+            @media @mobile{
+                width: 100%;
+            }
 
             h1{
                 font-size: 2rem;
@@ -53,6 +58,10 @@ body{
         nav{
             .flexDisplay(row, space-between, center);
             width: 33%;
+
+            @media @mobile{
+                width: 100%;
+            }
             a{
                 text-decoration: none;
                 color: black;
