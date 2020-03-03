@@ -10,19 +10,6 @@ function App() {
 
       <HomePage/>
 
-      {/* <div>
-        <Link to='/'>Home</Link>
-        <Link to='/SignUp'>SignUp</Link>
-      </div>
-      
-      <Route exact path='/'>
-        <HomePage/>
-      </Route>
-
-      <Route  path='/SignUp'>
-        <SignUp/>
-      </Route> */}
-
     </div>
   );
 }
