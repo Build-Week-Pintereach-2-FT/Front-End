@@ -1,13 +1,16 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
+//import { Route, Link } from "react-router-dom";
 import './App.css';
-import SignUp from "./components/sign-up";
+
 import HomePage from "./components/home-page";
 
 function App() {
   return (
     <div className="App">
-      <div>
+
+      <HomePage/>
+
+      {/* <div>
         <Link to='/'>Home</Link>
         <Link to='/SignUp'>SignUp</Link>
       </div>
@@ -18,7 +21,7 @@ function App() {
 
       <Route  path='/SignUp'>
         <SignUp/>
-      </Route>
+      </Route> */}
 
     </div>
   );
