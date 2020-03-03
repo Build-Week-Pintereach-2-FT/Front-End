@@ -150,7 +150,7 @@ body .container .login {
 body .container .login h1 {
   font-size: 2rem;
 }
-body .container .login .login {
+body .container .login .loginButton {
   color: white;
   background: #008cff;
 }
