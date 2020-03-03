@@ -10,6 +10,7 @@ function App() {
       <div>
         <Link to='/'>Home</Link>
         <Link to='/SignUp'>SignUp</Link>
+        <Link to='/SignIn'>SignIn</Link>
       </div>
       
       <Route exact path='/'>
@@ -19,7 +20,10 @@ function App() {
       <Route  path='/SignUp'>
         <SignUp/>
       </Route>
-
+      
+      <Route path='/signin'>
+        <SignIn />
+      </Route>
     </div>
   );
 }
