@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Link } from "react-router-dom";
 import './App.css';
 import SignUp from "./components/sign-up";
+import SignIn from "./components/sign-in"
 import HomePage from "./components/home-page";
+import ArticleForm from "./components/article/article-form";
+import ArticleList from "./components/article/article-list"
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
       <Route path='/signin'>
         <SignIn />
       </Route>
+
     </div>
   );
 }
