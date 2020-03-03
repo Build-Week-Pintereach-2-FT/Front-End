@@ -1,9 +1,18 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import {createNewArticle} from "../actions/actions"
 
-export default function ArticleForm() {
+function ArticleForm (props) {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
+
+  const onSubmit = (data, e) => {
+      console.log(data);
+
+      props.createNewArticle(data);
+
+      e.target.reset();
+  }
+
   console.log(errors);
   
   return (
@@ -40,3 +49,12 @@ export default function ArticleForm() {
     </form>
   );
 }
+
+const mapStateToProps = state => {
+      return {
+        isLoading: state.isLoading,
+        error: state.error
+      }
+    }
+    
+export default connect(mapStateToProps, {createNewArticle})(ArticleForm)

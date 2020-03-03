@@ -1,12 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {createNewBoard} from "../actions/actions"
 
-export default function BoardForm () {
+function BoardForm (props) {
 
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (boardData, e) => {
         console.log(boardData);
+
+        props.createNewBoard(boardData);
+
         e.target.reset();
     }
 
@@ -37,3 +41,12 @@ export default function BoardForm () {
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+      isLoading: state.isLoading,
+      error: state.error
+    }
+  }
+  
+  export default connect(mapStateToProps, {createNewBoard})(BoardForm)
