@@ -17,7 +17,7 @@ function ArticleList(props) {
     
             {console.log("articles: ", props)}
             {props.articles.map(article => (
-                <h2>test</h2>
+                <h2>{article.articleName}</h2>
             ))}
         </section>
 
