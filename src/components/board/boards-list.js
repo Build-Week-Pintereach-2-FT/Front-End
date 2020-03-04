@@ -5,6 +5,8 @@ import {getUserBoards} from '../../actions/actions';
 import {getAllBoards} from '../../actions/actions';
 import {getAllArticles} from '../../actions/actions';
 import {getBoardArticles} from '../../actions/actions';
+import {deleteBoard} from '../../actions/actions';
+
 import history from '../../utils/history';
 
 function BoardList (props) {
@@ -23,7 +25,7 @@ function BoardList (props) {
     //    if ( history.location.pathname === "/UserDashboard") {
     //          //props.getUserBoards(props.user.id);
     //          props.getUserBoards();
-    //    } //need to figure out how to update everytime history changes?
+    //    }
     //    else {
     //         props.getAllBoards();
     //    }
@@ -38,6 +40,13 @@ function BoardList (props) {
         console.log("event:", event.target.value)
         
         history.push('/ArticleList')
+    }
+
+    const handleDelete = (event) => {
+        props.deleteBoard(event.target.value)
+
+        //console.log("EVENT HANDLE DELETE: ", event.target.value)
+
     }
 
     return (
@@ -57,7 +66,7 @@ function BoardList (props) {
                     {history.location.pathname === "/UserDashboard"
                         ? <>
                             <button>Edit</button>
-                            <button>Delete</button>
+                            <button value={boardEl.id} onClick={handleDelete}>Delete</button>
                           </>
                         : ""
                     }
@@ -80,4 +89,4 @@ const mapStateToProps = state => {
     }
   }
   
-  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getAllArticles, getBoardArticles})(BoardList)
+  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getAllArticles, getBoardArticles, deleteBoard})(BoardList)

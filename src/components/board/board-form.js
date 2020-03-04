@@ -13,11 +13,11 @@ function BoardForm (props) {
         //set up newBoard state to match that on backend by adding a userId
         const newBoard = {
             ...boardData,
-            //userId: props.user.id
-            userId: 2 //hardcoded, change later once we can properly store user state
+            userId: props.user.id,
+            //userId: 3 //hardcoded, change later once we can properly store user state
         }
         console.log("newBoard: ", newBoard)
-        props.createNewBoard(newBoard);
+        //props.createNewBoard(newBoard);
 
         e.target.reset();
     }
@@ -53,7 +53,8 @@ function BoardForm (props) {
 const mapStateToProps = state => {
     return {
       isLoading: state.isLoading,
-      error: state.error
+      error: state.error,
+      user: state.user
     }
   }
   
