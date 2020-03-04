@@ -24,10 +24,11 @@ export const login = (item) => dispatch => {
         .post('api/users/login', item)
             .then(response => {
                 console.log(response)
-                dispatch({type: LOGIN, payload: response.data})
+                //dispatch({type: LOGIN, payload: response.data})
                 //set token to local storage here as well
                 window.localStorage.setItem('token', response.data.token)
                 history.push(`/UserDashboard`)
+                console.log("then in login .then")
             })   
             .catch(error => {
                 console.log(error)
@@ -137,9 +138,11 @@ export const getUserBoards = (id) => dispatch => {
 
     axiosWithAuth()
         .get(`/api/boards/${id}`)
-        //.get(`/api/boards/3`)
+        //get(`/api/boards/3`)
             .then(response => {
-                console.log(response);
+                console.log("response from getUserBoards:", response);
+
+                //maybe have a ternary here, if the response type === object and not an array, send data differently
                 dispatch({type: SET_BOARDS, payload: response.data})
 
             })

@@ -7,11 +7,6 @@ import {getAllArticles} from '../../actions/actions';
 
 function ArticleList(props) {
 
-    const getArticles = () => {
-       // props.getAllArticles()
-
-    }
-
 
     return (
         <>

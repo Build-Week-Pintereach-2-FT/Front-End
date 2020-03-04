@@ -18,10 +18,11 @@ function BoardList (props) {
        
         console.log("HISTORY: ", history)
 
-        //if user is logged in (user.id is not null), 
-        //AND user is on their dashboard (therefore, showing only their boards)
+    //     //if user is logged in (user.id is not null), 
+    //     //AND user is on their dashboard (therefore, showing only their boards)
     //    if ( history.location.pathname === "/UserDashboard") {
-    //         // props.getUserBoards(props.user.id);
+    //          //props.getUserBoards(props.user.id);
+    //          props.getUserBoards();
     //    } //need to figure out how to update everytime history changes?
     //    else {
     //         props.getAllBoards();
@@ -53,7 +54,6 @@ function BoardList (props) {
                     <button value={boardEl.id} onClick={handleArticles}>See articles</button>
 
                     {/* if on user dashboard, show edit/delete buttons */}
-                    {/* will need to update this condition later, as history is not an accurate way to gauge this */}
                     {history.location.pathname === "/UserDashboard"
                         ? <>
                             <button>Edit</button>
