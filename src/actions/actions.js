@@ -1,5 +1,7 @@
 import axios from 'axios'
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import { browserHistory } from 'react-router'
+import history from '../utils/history';
 
 export const FETCHING_DATA = "FETCHING_DATA";
 export const SET_ERROR = "SET_ERROR";
@@ -25,6 +27,7 @@ export const login = (item) => dispatch => {
                 dispatch({type: LOGIN, payload: response.data})
                 //set token to local storage here as well
                 window.localStorage.setItem('token', response.data.token)
+                history.push(`/UserDashboard`)
             })   
             .catch(error => {
                 console.log(error)
@@ -87,43 +90,43 @@ export const createNewArticle = (item) => dispatch => {
 
 
 //get a list of all boards created
-// export const getAllBoards = () => dispatch => {
+export const getAllBoards = () => dispatch => {
 
-//     dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-//     axios
-//         .get('/api/boards')
-//             .then(response => {
-//                 console.log(response);
-//                 dispatch({type: SET_BOARDS, payload: response.data})
+    axios
+        .get('https://pintereach2bw4.herokuapp.com/api/boards')
+            .then(response => {
+                console.log(response);
+                dispatch({type: SET_BOARDS, payload: response.data})
 
-//             })
-//             .catch(error => {
-//                 console.log(error)
-//                 dispatch({type: SET_ERROR, payload: error.data})
-//             })
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 
-// }
+}
 
 
 // //get a list of all articles created 
-// export const getAllArticles = () => dispatch => {
+export const getAllArticles = () => dispatch => {
 
-//     dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-//     axios
-//         .get('/api/articles')
-//             .then(response => {
-//                 console.log(response);
-//                 dispatch({type: SET_ARTICLES, payload: response.data})
+    axios
+        .get('https://pintereach2bw4.herokuapp.com/api/articles')
+            .then(response => {
+                console.log("getAllArticles:", response);
+                dispatch({type: SET_ARTICLES, payload: response.data})
 
-//             })
-//             .catch(error => {
-//                 console.log(error)
-//                 dispatch({type: SET_ERROR, payload: error.data})
-//             })
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 
-// }
+}
 
 
 //get a list of boards that belong to a specific user using the user's id number
@@ -164,6 +167,36 @@ export const getUserBoards = (id) => dispatch => {
 //             })
 
 // }
+
+
+// //get a list of articles that belong to a specific board using the board's id number
+export const getBoardArticles = (id) => dispatch => {
+
+    dispatch({type: FETCHING_DATA})
+
+    axios
+        .get(`https://pintereach2bw4.herokuapp.com/api/articles`)
+            .then(response => {
+                console.log("getBoardArticles: ", response.data);
+
+                let specificBoardArticles = [];
+
+                response.data.map(article => {
+                    if (article.boardId == id) {
+                        specificBoardArticles.push(article)
+                    }
+                })
+
+               // console.log(specificBoardArticles)
+                dispatch({type: SET_ARTICLES, payload: specificBoardArticles})
+
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
+
+}
 
 // //delete a board
 // //possibly create a loop to delete all articles associated with given board as well?

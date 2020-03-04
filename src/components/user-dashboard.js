@@ -2,7 +2,8 @@ import React from "react";
 import BoardList from "./board/boards-list";
 import BoardListForm from "./board/board-form";
 
-function UserDashboard () {
+
+function UserDashboard (props) {
     return (
         <>
         <BoardList/>
@@ -11,4 +12,5 @@ function UserDashboard () {
     )
 }
 
-export default UserDashboard;
+
+export default UserDashboard

@@ -32,6 +32,7 @@ export default function HomePage() {
                 <Link className='home-nav' to='/SignIn'>SignIn</Link>
                 <Link className='home-nav' to='/BoardList'>Board List</Link>
                 <Link className='home-nav' to='/ArticleList'>Article List</Link>
+                <Link className='home-nav' to='/UserDashboard'>User Dashboards</Link>
             </div>
       
             
