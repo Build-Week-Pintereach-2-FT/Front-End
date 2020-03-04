@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
 
-import HomePage from "./components/home-page";
+import NavBar from "./components/navbar";
 import SignUp from "./components/sign-up";
 import SignIn from "./components/sign-in";
 import BoardList from "./components/board/boards-list";
@@ -15,8 +15,9 @@ import NonUserBoardList from './components/board/nonUser-board-list';
 function App() {
   return (
     <div className="App">
-      <HomePage/>
 
+      <NavBar/>
+      
       <Switch>
 
       <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>

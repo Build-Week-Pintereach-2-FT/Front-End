@@ -5,8 +5,19 @@
 .form-holder {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row;
   border: 2px solid green;
+  height: 30vh;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid blue;
+  height: 65%;
 }
 
 .home-nav {

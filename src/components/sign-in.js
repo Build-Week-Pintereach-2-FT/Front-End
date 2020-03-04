@@ -7,36 +7,48 @@ function SignIn(props) {
 
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = (data, e) => {
     console.log(data);
     
     props.login(data); //send data of user object through to login action
+
+    e.target.reset();
   }
 
   
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <input 
-      type="text"
-      placeholder="Email"
-      name="Email"
-      ref={register({ required: true })}
-      /> */}
-      <input 
-      type="text" 
-      placeholder="Username" 
-      name="username" 
-      ref={register({ required: true })}
-      />
-      <input 
-      type="text" 
-      placeholder="Password"
-      name="password" 
-      ref={register({ required: true })}
-       />
-      <button type="submit">Submit</button>
-    </form>
-  );
+    <div className='form-holder'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input 
+            className='form-input'
+            type='text' 
+            placeholder='username' 
+            name='username' 
+            ref={register({ required: "Username Required!", minLength: {value: 3, message: "Username too short"} })}/>
+
+            <input
+             className='form-input'
+             type='text' 
+             placeholder='email' 
+             name='email' 
+             ref={register({ required: "Email Required!", minLength: {value: 5, message: "Email invalid"} })}/>
+
+            <input 
+             className='form-input'
+             type='password'
+             placeholder='password'
+             name='password' 
+             ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
+
+            {errors.username && <p>{errors.username.message}</p>}
+            {errors.email && <p>{errors.email.message}</p>}
+            {errors.password && <p>{errors.password.message}</p>}
+
+            <input type='submit'/>
+        </form>
+
+    </div>
+);
 }
 
 const mapStateToProps = state => {
