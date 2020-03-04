@@ -77,7 +77,7 @@ export const createNewBoard = (item) => dispatch => {
 export const createNewArticle = (item) => dispatch => {
     console.log("createNewArticle: ", item);
 
-    //dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
     axiosWithAuth()
         .post('/api/articles', item)
@@ -222,11 +222,13 @@ export const deleteBoard = (id) => dispatch => {
 //delete an article
 export const deleteArticle = (id) => dispatch => {
     dispatch({type: FETCHING_DATA})
+    console.log(id)
 
     axiosWithAuth()
         .delete(`/api/articles/${id}`)
             .then (response => {
-                history.push('/ArticleList') //<-- whatever the URL is for their dashboard
+               
+                //getBoardArticles() //need to get all articles again
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})

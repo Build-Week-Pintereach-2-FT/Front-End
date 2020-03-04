@@ -14,10 +14,11 @@ function ArticleForm (props) {
         ...data,
         //boardId: create state to see what board we currently clicked into??
         boardId: 2
+        
       }
 
       console.log("newArticle: ", newArticle)
-      props.createNewArticle(data);
+      props.createNewArticle(newArticle);
 
       e.target.reset();
   }

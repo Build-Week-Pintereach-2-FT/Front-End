@@ -4,13 +4,15 @@ import ArticleForm from "./article-form";
 import {connect} from 'react-redux';
 import {getAllArticles} from '../../actions/actions';
 import {deleteArticle} from '../../actions/actions';
+import {getBoardArticles} from '../../actions/actions';
 import history from '../../utils/history';
 
 function ArticleList(props) {
 
-    const handleDelete = (event) => {
-        props.deleteArticle(event.target.value)
-      // console.log("EVENT TARGET VALUE:", event.target.value)
+    const handleDelete = (article) => {
+        props.deleteArticle(article.id)
+        props.getBoardArticles(article.boardId)
+       // console.log(article)
     }
 
     return (
@@ -27,7 +29,7 @@ function ArticleList(props) {
                 <h2>{article.articleName}</h2>
 
                 <button>Edit</button>
-                <button value={article.id} onClick={handleDelete}>Delete</button>
+                <button value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
                 </>
             ))}
         </section>
@@ -54,4 +56,4 @@ const mapStateToProps = state => {
     }
   }
   
-  export default connect(mapStateToProps, {getAllArticles, deleteArticle})(ArticleList)
+  export default connect(mapStateToProps, {getAllArticles, deleteArticle, getBoardArticles})(ArticleList)
