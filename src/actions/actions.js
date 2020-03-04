@@ -82,6 +82,7 @@ export const createNewArticle = (item) => dispatch => {
     axiosWithAuth()
         .post('/api/articles', item)
             .then(response => {
+                console.log(response)
                 dispatch({type: UPDATE_ARTICLES, payload: response.data})
                 history.push(`/ArticleList`) //<-- whatever URL they were currently on when adding?
             })
@@ -229,6 +230,23 @@ export const deleteArticle = (id) => dispatch => {
             .then (response => {
                
                 //getBoardArticles() //need to get all articles again
+            })
+            .catch(error => {
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
+}
+
+
+//edit a board 
+export const editBoard = (id, editedBoard) => dispatch => {
+    dispatch({type: FETCHING_DATA})
+    console.log("id to edit in actions: ", id)
+
+    axiosWithAuth()
+        .put(`/api/boards/${id}`, editedBoard)
+            .then(response => {
+                console.log("response from edit board: ", response)
+                getAllBoards();
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})
