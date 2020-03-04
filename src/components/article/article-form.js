@@ -1,9 +1,27 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import {createNewArticle} from "../../actions/actions";
+import {connect} from 'react-redux';
 
-export default function ArticleForm() {
+function ArticleForm (props) {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
+
+  const onSubmit = (data, e) => {
+      console.log(data);
+      
+      //set up newArticle state to match that on backend by adding a boardId
+      const newArticle = {
+        ...data,
+        //boardId: create state to see what board we currently clicked into??
+        boardId: 1
+      }
+
+      console.log("newArticle: ", newArticle)
+      props.createNewArticle(data);
+
+      e.target.reset();
+  }
+
   console.log(errors);
   
   return (
@@ -12,31 +30,40 @@ export default function ArticleForm() {
       <input 
             type="text" 
             placeholder="Article" 
-            name="Article Name" 
+            name="articleName" 
             ref={register} />
             <br />
             <label>Article Link: </label>
       <input 
             type="text" 
             placeholder="Link" 
-            name="Link to Article" 
+            name="linkToArticle" 
             ref={register} />
             <br />
             <label>Categories: </label>
       <input 
             type="text" 
             placeholder="Categories" 
-            name="Categories" 
+            name="categories" 
             ref={register} />
             <br />
             <label>Date Published: </label>
       <input 
             type="date" 
             placeholder="Date" 
-            name="Date Published" 
+            name="datePublished" 
             ref={register} />
             <br />
       <button type="submit">Submit</button>
     </form>
   );
 }
+
+const mapStateToProps = state => {
+      return {
+        isLoading: state.isLoading,
+        error: state.error
+      }
+    }
+    
+export default connect(mapStateToProps, {createNewArticle})(ArticleForm)

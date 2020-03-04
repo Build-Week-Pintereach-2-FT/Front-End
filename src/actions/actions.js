@@ -1,5 +1,7 @@
 import axios from 'axios'
-import axiosWithAuth from '../utils/axiosWithAuth';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
+import { browserHistory } from 'react-router'
+import history from '../utils/history';
 
 export const FETCHING_DATA = "FETCHING_DATA";
 export const SET_ERROR = "SET_ERROR";
@@ -16,54 +18,59 @@ export const UPDATE_ARTICLES = "UPDATE_ARTICLES";
 
 export const login = (item) => dispatch => {
     console.log('LOGIN: ', item);
-    //dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-    // axios
-    //     .post('', item)
-    //         .then(response => {
-    //             console.log(response)
-    //             dispatch({type: LOGIN, payload: response.data})
-    //             //set token to local storage here as well
-    //         })   
-    //         .catch(error => {
-    //             console.log(error)
-    //             dispatch({type: SET_ERROR, payload: error.data})
-    //         })
+    axiosWithAuth()
+        .post('api/users/login', item)
+            .then(response => {
+                console.log(response)
+                //dispatch({type: LOGIN, payload: response.data})
+                //set token to local storage here as well
+                window.localStorage.setItem('token', response.data.token)
+                history.push(`/UserDashboard`)
+                console.log("then in login .then")
+            })   
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 
 }
 
 export const createNewUser = (item) => dispatch => {
     console.log("createNewUser: ", item);
 
-    //dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-    // axios
-    //     .post('/api/users/register', item)
-    //         .then(response => {
-    //             dispatch({type: NEW_USER}, payload: response.data)
-    //             history.push(`/SignIn`)
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             dispatch({type: SET_ERROR, payload: error.data})
-    //         })
+    axios
+        .post('https://pintereach2bw4.herokuapp.com/api/users/register', item)
+            .then(response => {
+                console.log(response)
+                //dispatch({type: NEW_USER, payload: response.data})
+                //history.push(`/SignIn`)
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 }
 
 export const createNewBoard = (item) => dispatch => {
     console.log("createNewBoard: ", item);
 
-    //dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-    // axiosWithAuth()
-    //     .post('/api/boards', item)
-    //         .then(response => {
-    //             dispatch({type: UPDATE_BOARDS}, payload: response.data)
-    //             history.push(`/boards`) <-- whatever URL they were currently on when adding?
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             dispatch({type: SET_ERROR, payload: error.data})
-    //         })
+    axiosWithAuth()
+        .post('/api/boards', item)
+            .then(response => {
+                console.log(response)
+                dispatch({type: UPDATE_BOARDS, payload: response.data})
+                history.push(`/UserDashboard`) //<-- whatever URL they were currently on when adding?
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 }
 
 export const createNewArticle = (item) => dispatch => {
@@ -90,7 +97,7 @@ export const getAllBoards = () => dispatch => {
     dispatch({type: FETCHING_DATA})
 
     axios
-        .get('/api/boards')
+        .get('https://pintereach2bw4.herokuapp.com/api/boards')
             .then(response => {
                 console.log(response);
                 dispatch({type: SET_BOARDS, payload: response.data})
@@ -104,15 +111,15 @@ export const getAllBoards = () => dispatch => {
 }
 
 
-//get a list of all articles created 
+// //get a list of all articles created 
 export const getAllArticles = () => dispatch => {
 
     dispatch({type: FETCHING_DATA})
 
     axios
-        .get('/api/articles')
+        .get('https://pintereach2bw4.herokuapp.com/api/articles')
             .then(response => {
-                console.log(response);
+                console.log("getAllArticles:", response);
                 dispatch({type: SET_ARTICLES, payload: response.data})
 
             })
@@ -129,10 +136,13 @@ export const getUserBoards = (id) => dispatch => {
 
     dispatch({type: FETCHING_DATA})
 
-    axios
+    axiosWithAuth()
         .get(`/api/boards/${id}`)
+        //get(`/api/boards/3`)
             .then(response => {
-                console.log(response);
+                console.log("response from getUserBoards:", response);
+
+                //maybe have a ternary here, if the response type === object and not an array, send data differently
                 dispatch({type: SET_BOARDS, payload: response.data})
 
             })
@@ -143,16 +153,46 @@ export const getUserBoards = (id) => dispatch => {
 
 }
 
-//get a list of articles that belong to a specific board using the board's id number
+// //get a list of articles that belong to a specific board using the board's id number
+// export const getBoardArticles = (id) => dispatch => {
+
+//     dispatch({type: FETCHING_DATA})
+
+//     axios
+//         .get(`/api/articles/${id}`)
+//             .then(response => {
+//                 console.log(response);
+//                 dispatch({type: SET_ARTICLES, payload: response.data})
+
+//             })
+//             .catch(error => {
+//                 console.log(error)
+//                 dispatch({type: SET_ERROR, payload: error.data})
+//             })
+
+// }
+
+
+// //get a list of articles that belong to a specific board using the board's id number
 export const getBoardArticles = (id) => dispatch => {
 
     dispatch({type: FETCHING_DATA})
 
     axios
-        .get(`/api/articles/${id}`)
+        .get(`https://pintereach2bw4.herokuapp.com/api/articles`)
             .then(response => {
-                console.log(response);
-                dispatch({type: SET_ARTICLES, payload: response.data})
+                console.log("getBoardArticles: ", response.data);
+
+                let specificBoardArticles = [];
+
+                response.data.map(article => {
+                    if (article.boardId == id) {
+                        specificBoardArticles.push(article)
+                    }
+                })
+
+               // console.log(specificBoardArticles)
+                dispatch({type: SET_ARTICLES, payload: specificBoardArticles})
 
             })
             .catch(error => {
@@ -162,33 +202,31 @@ export const getBoardArticles = (id) => dispatch => {
 
 }
 
-//delete a board
-//possibly create a loop to delete all articles associated with given board as well?
-// export const deleteBoard = (id) => dispatch => {
+// //delete a board
+// //possibly create a loop to delete all articles associated with given board as well?
+// // export const deleteBoard = (id) => dispatch => {
+// //     dispatch({type: FETCHING_DATA})
+
+// //     axiosWithAuth()
+// //         .delete(`/api/boards/${id}`)
+// //             .then(response => {
+// //                 //GET all articles associated with board id .get(`/api/articles/${id}`)
+// //             })
+// //             .catch(error => {
+
+// //             })
+// // }
+
+// //delete an article
+// export const deleteArticle = (id) => dispatch => {
 //     dispatch({type: FETCHING_DATA})
 
 //     axiosWithAuth()
-//         .delete(`/api/boards/${id}`)
-//             .then(response => {
-//                 //GET all articles associated with board id .get(`/api/articles/${id}`)
+//         .delete(`/api/articles/${id}`)
+//             .then (response => {
+//                 history.push('/dashboard') //<-- whatever the URL is for their dashboard
 //             })
 //             .catch(error => {
-
+//                 dispatch({type: SET_ERROR, payload: error.data})
 //             })
 // }
-
-//delete an article
-export const deleteArticle = (id) => dispatch => {
-    dispatch({type: FETCHING_DATA})
-
-    axiosWithAuth()
-        .delete(`/api/articles/${id}`)
-            .then (response => {
-                history.push('/dashboard') //<-- whatever the URL is for their dashboard
-            })
-            .catch(error => {
-                dispatch({type: SET_ERROR, payload: error.data})
-            })
-}
-
-
