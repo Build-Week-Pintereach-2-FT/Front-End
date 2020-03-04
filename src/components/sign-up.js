@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {createNewUser} from "../actions/actions"
 
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 function SignUp (props) {
 
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data, e) => {
-        console.log(data);
+        console.log("SignUp data ", data);
 
         props.createNewUser(data); //send data to createNewUser action
 
@@ -17,35 +19,46 @@ function SignUp (props) {
 
     return (
         <div className='form-holder'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input 
-                className='form-input'
-                type='text' 
-                placeholder='username' 
-                name='username' 
-                ref={register({ required: "Username Required!", minLength: {value: 3, message: "Username too short"} })}/>
+            <div className='form-wrapper'>
+            <p>Create a new account</p>    
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <FormGroup>
+                    <Label for='username'/>    
+                    <Input 
+                    className='form-input'
+                    type='text' 
+                    placeholder='username' 
+                    name='username' 
+                    ref={register({ required: "Username Required!", minLength: {value: 3, message: "Username too short"} })}/>
+                </FormGroup>
 
-                <input
-                 className='form-input'
-                 type='text' 
-                 placeholder='email' 
-                 name='email' 
-                 ref={register({ required: "Email Required!", minLength: {value: 5, message: "Email invalid"} })}/>
+                <FormGroup>
+                    <Label for='email'/>  
+                    <Input
+                    className='form-input'
+                    type='text' 
+                    placeholder='email' 
+                    name='email' 
+                    ref={register({ required: "Email Required!", minLength: {value: 5, message: "Email invalid"} })}/>
+                </FormGroup>
 
-                <input 
-                 className='form-input'
-                 type='password'
-                 placeholder='password'
-                 name='password' 
-                 ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
+                <FormGroup>
+                    <Label for='password'/>  
+                    <Input 
+                    className='form-input'
+                    type='password'
+                    placeholder='password'
+                    name='password' 
+                    ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
+                </FormGroup>
 
                 {errors.username && <p>{errors.username.message}</p>}
                 {errors.email && <p>{errors.email.message}</p>}
                 {errors.password && <p>{errors.password.message}</p>}
 
-                <input type='submit'/>
-            </form>
-
+                <Button type='submit'>Submit</Button>
+            </Form>
+            </div>
         </div>
     );
 

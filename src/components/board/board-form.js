@@ -34,8 +34,7 @@ function BoardForm (props) {
                 ref={register({ required: "Title Required!", minLength: {value: 3, message: "Title too short"} })}/>
 
                 <textarea
-                 className='form-input'
-                //  type='textarea' 
+                 className='form-input' 
                  placeholder='Enter Board Description' 
                  name='boardDescription' 
                  ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>

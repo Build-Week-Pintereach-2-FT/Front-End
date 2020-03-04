@@ -7,6 +7,7 @@ export default function Board (props) {
     console.log("Boards ID ", BoardID);
     const boardBit = props.boards.find( boardEl => boardEl.id === Number(BoardID))
     console.log("boardBits ", boardBit)
+    
     return (
         <div>
             <div>

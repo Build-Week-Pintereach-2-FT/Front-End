@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from "react-router-dom";
 import './App.css';
 
-import HomePage from "./components/home-page";
+import NavBar from "./components/navbar";
 import SignUp from "./components/sign-up";
 import SignIn from "./components/sign-in";
 import BoardList from "./components/board/boards-list";
@@ -14,8 +14,7 @@ import UserDashboard from './components/user-dashboard';
 function App() {
   return (
     <div className="App">
-      <HomePage/>
-
+      <NavBar/>
       
       <Route exact path='/'>
           <h1>Homepage stuff</h1>
