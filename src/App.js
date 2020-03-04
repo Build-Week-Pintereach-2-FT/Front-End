@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
 
 import HomePage from "./components/home-page";
@@ -10,13 +10,17 @@ import Board from "./components/board/board";
 import ArticleList from "./components/article/article-list";
 import PrivateRoute from './components/PrivateRoute';
 import UserDashboard from './components/user-dashboard';
+import NonUserBoardList from './components/board/nonUser-board-list';
 
 function App() {
   return (
     <div className="App">
       <HomePage/>
 
-      
+      <Switch>
+
+      <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
+
       <Route exact path='/'>
           <h1>Homepage stuff</h1>
       </Route>
@@ -29,10 +33,10 @@ function App() {
           <SignIn/>
       </Route>
 
-      <Route  path='/BoardList'>
-          {/* <BoardList boards={boardsProps}/> */}
-          <BoardList/>
-      </Route>
+      {/* //react 1  */}
+      {/* <Route  path='/BoardList'>
+          <NonUserBoardList/>
+      </Route> */}
 
       <Route  path='/BoardList/:BoardID'>
           {/* <Board boards={boardsProps}/> */}
@@ -41,9 +45,9 @@ function App() {
 
       <Route exact path='/ArticleList' component={ArticleList}/>
 
-      <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
+      
    
-    
+      </Switch>
 
     </div>
   );

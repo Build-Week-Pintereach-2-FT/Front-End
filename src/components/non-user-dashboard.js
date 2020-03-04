@@ -1,9 +1,9 @@
 import React from "react";
-import BoardList from "./board/boards-list";
+import NonUserBoardList from "./board/nonUser-board-list";
 
 function NonUserDashboard () {
     return (
-        <BoardList/>
+        <NonUserBoardList/>
     )
 }
 

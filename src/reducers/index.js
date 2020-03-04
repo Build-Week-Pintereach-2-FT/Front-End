@@ -12,7 +12,7 @@ import {
 
 const initialState = {
     isLoading: false,
-    user: {},
+    user: {id: null},
     boards: [],
     articles: [],
     error: null
@@ -69,7 +69,7 @@ export const reducer = (state = initialState, action) => {
         case LOGIN: 
             return {
                 ...state,
-                user: action.payload,
+                user: {id: action.payload},
                 isLoading: false,
                 error: null
             }
