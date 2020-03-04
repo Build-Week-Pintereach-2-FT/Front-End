@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-import BoardForm from "./board-form";
 import {connect} from 'react-redux';
 import {getUserBoards} from '../../actions/actions';
 
@@ -18,7 +17,6 @@ function BoardList (props) {
 
     return (
         <div>
-            <BoardForm/>
             <div>
             {props.boards.map(boardEl => (
                 <div key={boardEl.id}>

@@ -34,32 +34,7 @@ export default function HomePage() {
                 <Link className='home-nav' to='/ArticleList'>Article List</Link>
             </div>
       
-            <Route exact path='/'>
-                <h1>Homepage stuff</h1>
-            </Route>
-
-            <Route  path='/SignUp'>
-                <SignUp/>
-            </Route>
-
-            <Route  path='/SignIn'>
-                <SignIn/>
-            </Route>
-
-            <Route  path='/BoardList'>
-                {/* <BoardList boards={boardsProps}/> */}
-                <BoardList/>
-            </Route>
-
-            <Route  path='/BoardList/:BoardID'>
-                {/* <Board boards={boardsProps}/> */}
-                <Board/>
-            </Route> 
-
-             <Route  path='/ArticleList'>
-                {/* <BoardList boards={boardsProps}/> */}
-                <ArticleList/>
-            </Route>           
+            
         </div>
     )
 
