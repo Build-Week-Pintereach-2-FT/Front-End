@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import BoardForm from "./board-form";
+import {connect} from 'react-redux';
+import {getUserBoards} from '../../actions/actions';
 
-export default function BoardList (props) {
+function BoardList (props) {
+
+    useEffect(() => {
+        //getBoards(props.user.id);
+        getBoards()
+    }, [])
+
+    const getBoards = () => {
+        console.log(props.user.id)
+        props.getUserBoards(props.user.id);
+    }
 
     return (
         <div>
@@ -10,9 +22,10 @@ export default function BoardList (props) {
             <div>
             {props.boards.map(boardEl => (
                 <div key={boardEl.id}>
-                    <Link to={`/BoardList/${boardEl.id}`}>
+                    {/* <Link to={`/BoardList/${boardEl.id}`}>
                         <p>MapName {boardEl.name}</p>
-                    </Link>
+                    </Link> */}
+                    <h2>{boardEl.boardName}</h2>
                 </div>
             ))}
             </div>
@@ -20,3 +33,14 @@ export default function BoardList (props) {
     )
 
 }
+
+const mapStateToProps = state => {
+    return {
+      isLoading: state.isLoading,
+      error: state.error,
+      user: state.user,
+      boards: state.boards
+    }
+  }
+  
+  export default connect(mapStateToProps, {getUserBoards})(BoardList)

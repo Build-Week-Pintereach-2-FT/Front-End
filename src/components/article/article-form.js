@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import {createNewArticle} from "../actions/actions"
+import {createNewArticle} from "../../actions/actions";
+import {connect} from 'react-redux';
 
 function ArticleForm (props) {
   const { register, handleSubmit, errors } = useForm();

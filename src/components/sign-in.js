@@ -26,13 +26,13 @@ function SignIn(props) {
       <input 
       type="text" 
       placeholder="Username" 
-      name="Username" 
+      name="username" 
       ref={register({ required: true })}
       />
       <input 
       type="text" 
       placeholder="Password"
-      name="Password" 
+      name="password" 
       ref={register({ required: true })}
        />
       <button type="submit">Submit</button>
