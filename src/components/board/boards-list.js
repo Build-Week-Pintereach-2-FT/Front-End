@@ -36,7 +36,7 @@ function BoardList (props) {
         props.getBoardArticles(event.target.value)
         console.log("event:", event.target.value)
         
-        //history.push('/ArticleList')
+        history.push('/ArticleList')
     }
 
     return (
@@ -51,6 +51,16 @@ function BoardList (props) {
                     </Link> */}
                     <h2>{boardEl.boardName}</h2>
                     <button value={boardEl.id} onClick={handleArticles}>See articles</button>
+
+                    {/* if on user dashboard, show edit/delete buttons */}
+                    {/* will need to update this condition later, as history is not an accurate way to gauge this */}
+                    {history.location.pathname === "/UserDashboard"
+                        ? <>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                          </>
+                        : ""
+                    }
 
                 </div>
             ))}

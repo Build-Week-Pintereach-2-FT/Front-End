@@ -13,7 +13,6 @@ function SignIn(props) {
     props.login(data); //send data of user object through to login action
   }
 
-  console.log(errors);
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

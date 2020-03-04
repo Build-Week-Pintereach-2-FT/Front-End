@@ -57,18 +57,19 @@ export const createNewUser = (item) => dispatch => {
 export const createNewBoard = (item) => dispatch => {
     console.log("createNewBoard: ", item);
 
-    //dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA})
 
-    // axiosWithAuth()
-    //     .post('/api/boards', item)
-    //         .then(response => {
-    //             dispatch({type: UPDATE_BOARDS}, payload: response.data)
-    //             history.push(`/boards`) <-- whatever URL they were currently on when adding?
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             dispatch({type: SET_ERROR, payload: error.data})
-    //         })
+    axiosWithAuth()
+        .post('/api/boards', item)
+            .then(response => {
+                console.log(response)
+                dispatch({type: UPDATE_BOARDS, payload: response.data})
+                history.push(`/UserDashboard`) //<-- whatever URL they were currently on when adding?
+            })
+            .catch(error => {
+                console.log(error)
+                dispatch({type: SET_ERROR, payload: error.data})
+            })
 }
 
 export const createNewArticle = (item) => dispatch => {
