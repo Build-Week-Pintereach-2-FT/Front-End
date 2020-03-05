@@ -8,15 +8,13 @@ function BoardForm (props) {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (boardData, e) => {
-        console.log("boardData", boardData);
 
         //set up newBoard state to match that on backend by adding a userId
         const newBoard = {
             ...boardData,
-            //userId: props.user.id,
-            userId: 3 //hardcoded, change later once we can properly store user state
+            userId: props.user.id
         }
-        console.log("newBoard: ", newBoard)
+
         props.createNewBoard(newBoard);
 
         e.target.reset();
@@ -39,8 +37,8 @@ function BoardForm (props) {
                  name='boardDescription' 
                  ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
 
-                {errors.boardTitle && <p>{errors.boardTitle.message}</p>}
-                {errors.boardDesc && <p>{errors.boardDesc.message}</p>}
+                {errors.boardName && <p>{errors.boardName.message}</p>}
+                {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
 
                 <button type='submit'>Create New Board</button>
             </form>
