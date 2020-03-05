@@ -11,7 +11,7 @@ function NavBar (props) {
             <ul className='navbar-nav'>
                 <li className='nav-item'>
                     <Link className='nav-link' to='/'>
-                        <i class="fas fa-home fa-3x"></i>
+                        <i className="fas fa-home fa-3x"></i>
                         <span className='link-text'>Home</span>
                     </Link>
                 </li>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {createNewBoard} from "../../actions/actions"
 import {connect} from 'react-redux';
