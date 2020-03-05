@@ -16,6 +16,7 @@ export const UPDATE_ARTICLES = "UPDATE_ARTICLES";
 export const UPDATE_SELECTEDBOARD = "UPDATE_SELECTEDBOARD";
 
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
+export const DELETE_BOARD = "DELETE_BOARD";
 export const LOGOUT = "LOGOUT";
 
 export const login = (item) => dispatch => {
@@ -208,12 +209,15 @@ export const getBoardArticles = (id) => dispatch => {
 // //possibly create a loop to delete all articles associated with given board as well?
 export const deleteBoard = (id) => dispatch => {
     dispatch({type: FETCHING_DATA})
-
+    console.log("id in delete: ", id)
+    
     axiosWithAuth()
         .delete(`/api/boards/${id}`)
             .then(response => {
                 //GET all articles associated with board id .get(`/api/articles/${id}`)
-                history.push('/UserDashboard')
+                //history.push('/UserDashboard')
+                console.log("delete response: ", response)
+                dispatch({type: DELETE_BOARD, payload: id})
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})

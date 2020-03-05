@@ -10,6 +10,7 @@ import {
     UPDATE_ARTICLES,
     UPDATE_SELECTEDBOARD,
     DELETE_ARTICLE,
+    DELETE_BOARD,
     LOGOUT
 } from '../actions/actions';
 
@@ -116,6 +117,7 @@ export const reducer = (state = initialState, action) => {
                 selectedBoard: action.payload
             }
 
+        //update state adjusting for deleted article
         case DELETE_ARTICLE: 
             return {
                 ...state,
@@ -123,6 +125,17 @@ export const reducer = (state = initialState, action) => {
                     article.id !== action.payload
                 ))
             }
+
+        //update state adjusting for deleted board
+        case DELETE_BOARD: 
+            return {
+                ...state,
+                boards: state.boards.filter(board => (
+                    board.id != action.payload
+                ))
+            }
+
+        //logout reset
         case LOGOUT: 
             return {
                 isLoading: false,
