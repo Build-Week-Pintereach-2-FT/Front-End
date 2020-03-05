@@ -52,7 +52,6 @@ export const createNewUser = (item) => dispatch => {
         .post('https://pintereach2bw4.herokuapp.com/api/users/register', item)
             .then(response => {
                 console.log(response)
-                //dispatch({type: NEW_USER, payload: response.data})
                 history.push(`/SignIn`)
             })
             .catch(error => {
@@ -157,7 +156,7 @@ export const getUserBoards = (id) => dispatch => {
                         specificUserBoards.push(board)
                     }
                 })
-                
+
                 dispatch({type: SET_BOARDS, payload: specificUserBoards})
 
             })

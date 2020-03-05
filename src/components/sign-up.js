@@ -12,7 +12,7 @@ function SignUp (props) {
     const onSubmit = (data, e) => {
         console.log("SignUp data ", data);
 
-       // props.createNewUser(data); //send data to createNewUser action
+        props.createNewUser(data); //send data to createNewUser action
 
         e.target.reset();
     }
