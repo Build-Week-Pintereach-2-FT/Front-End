@@ -1,19 +1,9 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {logout} from '../actions/actions';
 
 function NavBar (props) {
-
-    //const [state, setState] = useState(false);
-    // useEffect(() => {
-    //     //state === true ? setState(false) : setState(true)
-    // }, [localStorage.getItem('token')])
-
-    // useEffect(() => {
-    //     state === true ? setState(false) : setState(true)
-    //     console.log("test")
-    // }, [localStorage.getItem('token')])
 
     return (
     
@@ -34,7 +24,6 @@ function NavBar (props) {
                 </li>
 
                 {/* if no token (so user is not logged in), show signin/sign up options. Otherwise, show signout */}
-                {/* {localStorage.getItem('token') === null */}
                 {props.user.id === null
                     ?
                     <>
@@ -69,21 +58,6 @@ function NavBar (props) {
                         </li>
                     </>
                 }
-
-
-                {/* <li className='nav-item'>
-                    <Link className='nav-link' to='/SignUp'>
-                        <i class="fas fa-user-plus fa-3x"></i>
-                        <span className='link-text'>Sign Up</span>
-                    </Link>
-                </li>
-
-                <li className='nav-item'>
-                    <Link className='nav-link' to='/SignIn'>
-                        <i class="fas fa-sign-in-alt fa-3x"></i>
-                        <span className='link-text'>Sign In</span>
-                    </Link>
-                </li> */}
             
             </ul>
         </nav>
