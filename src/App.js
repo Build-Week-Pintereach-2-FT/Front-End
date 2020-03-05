@@ -3,6 +3,7 @@ import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
 
 import NavBar from "./components/navbar";
+import HomePage from "./components/home-page";
 import SignUp from "./components/sign-up";
 import SignIn from "./components/sign-in";
 //import BoardList from "./components/board/boards-list";
@@ -23,7 +24,7 @@ function App() {
       <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
 
       <Route exact path='/'>
-          <h1 className='temp-h1'>Homepage stuff</h1>
+          <HomePage/>
       </Route>
 
       <Route  path='/SignUp'>
