@@ -29,8 +29,8 @@ function BoardList (props) {
     const getBoards = () => {
         //console.log(props.user.id)
 
-        props.getAllBoards();
-       //props.getUserBoards(props.user.id)  <====== ask Tim tomorrow! The new endpoint succeeds, but never returns data? 
+        //props.getAllBoards();
+       props.getUserBoards(props.user.id) // <====== ask Tim tomorrow! The new endpoint succeeds, but never returns data? 
     }
 
     const handleArticles = (event) => {

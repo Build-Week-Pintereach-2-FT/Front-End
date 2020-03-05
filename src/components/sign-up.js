@@ -12,7 +12,7 @@ function SignUp (props) {
     const onSubmit = (data, e) => {
         console.log("SignUp data ", data);
 
-        props.createNewUser(data); //send data to createNewUser action
+       // props.createNewUser(data); //send data to createNewUser action
 
         e.target.reset();
     }
@@ -24,7 +24,7 @@ function SignUp (props) {
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <FormGroup>
                     <Label for='username'/>    
-                    <Input 
+                    <input 
                     className='form-input'
                     type='text' 
                     placeholder='username' 
@@ -34,7 +34,7 @@ function SignUp (props) {
 
                 <FormGroup>
                     <Label for='email'/>  
-                    <Input
+                    <input
                     className='form-input'
                     type='text' 
                     placeholder='email' 
@@ -44,7 +44,7 @@ function SignUp (props) {
 
                 <FormGroup>
                     <Label for='password'/>  
-                    <Input 
+                    <input 
                     className='form-input'
                     type='password'
                     placeholder='password'

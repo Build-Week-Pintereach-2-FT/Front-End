@@ -142,13 +142,23 @@ export const getAllArticles = () => dispatch => {
 export const getUserBoards = (id) => dispatch => {
 
     dispatch({type: FETCHING_DATA})
+    console.log("hit getUserBoards")
 
     axiosWithAuth()
-        .get(`/api/boards/userboards/${id}`)
+        .get('/api/boards')
         //.get(`/api/boards/userboards/3`)
             .then(response => {
                 console.log("response from getUserBoards:", response);
-                dispatch({type: SET_BOARDS, payload: response.data})
+
+                let specificUserBoards = [];
+
+                response.data.map(board => {
+                    if (board.userId == id) {
+                        specificUserBoards.push(board)
+                    }
+                })
+                
+                dispatch({type: SET_BOARDS, payload: specificUserBoards})
 
             })
             .catch(error => {
