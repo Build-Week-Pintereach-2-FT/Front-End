@@ -7,25 +7,21 @@ function ArticleForm (props) {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data, e) => {
-      console.log(data);
       
       //set up newArticle state to match that on backend by adding a boardId
       const newArticle = {
         ...data,
-        //boardId: create state to see what board we currently clicked into??
-        boardId: 2
-        
+        boardId: props.selectedBoard
       }
 
-      console.log("newArticle: ", newArticle)
       props.createNewArticle(newArticle);
 
       e.target.reset();
   }
 
-  console.log(errors);
   
   return (
+
     <form onSubmit={handleSubmit(onSubmit)}>
         <label>Article Name: </label>
       <input 
@@ -63,7 +59,8 @@ function ArticleForm (props) {
 const mapStateToProps = state => {
       return {
         isLoading: state.isLoading,
-        error: state.error
+        error: state.error,
+        selectedBoard: state.selectedBoard
       }
     }
     

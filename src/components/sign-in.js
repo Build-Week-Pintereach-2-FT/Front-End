@@ -44,6 +44,7 @@ function SignIn(props) {
                 ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
             </FormGroup>
 
+
             {errors.username && <p>{errors.username.message}</p>}
             {errors.password && <p>{errors.password.message}</p>}
 
