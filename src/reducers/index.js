@@ -24,34 +24,6 @@ const initialState = {
 }
 
 
-
-// //maybe change initial state to have an allBoards: [ [{},{}] ] and userBoards: [ [{}, {}] ]
-// //waiting to see if there is backend functionality for getting articles associated with specific board id
-
-// //to update for a new board or initial render
-// return {
-//     ...state,
-//     userBoards: [...state.userBoards, action.payload]
-// }
-
-// //to update for a new article
-// //payload: {id: id, 
-// //          data: response.data //should be an article object
-// //          } can send multiple items in a payload
-// return {
-//     ...state,
-//     userBoards: state.userBoards.map(board => {
-//         //if boardId == payload id, then that's the specific board that the article gets added to
-//         {board.id == action.payload.id 
-//             ? [...board, action.payload.data] 
-//             : [...board]
-//         }
-//     })
-// }
-
-
-
-
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
         //set isLoading to true
@@ -78,7 +50,6 @@ export const reducer = (state = initialState, action) => {
                 isLoading: false,
                 error: null
             }
-
 
         //set board array state
         case SET_BOARDS: 
@@ -177,3 +148,28 @@ export const reducer = (state = initialState, action) => {
              return state
     }
 }
+
+
+// //maybe change initial state to have an allBoards: [ [{},{}] ] and userBoards: [ [{}, {}] ]
+// //waiting to see if there is backend functionality for getting articles associated with specific board id
+
+// //to update for a new board or initial render
+// return {
+//     ...state,
+//     userBoards: [...state.userBoards, action.payload]
+// }
+
+// //to update for a new article
+// //payload: {id: id, 
+// //          data: response.data //should be an article object
+// //          } can send multiple items in a payload
+// return {
+//     ...state,
+//     userBoards: state.userBoards.map(board => {
+//         //if boardId == payload id, then that's the specific board that the article gets added to
+//         {board.id == action.payload.id 
+//             ? [...board, action.payload.data] 
+//             : [...board]
+//         }
+//     })
+// }
