@@ -17,6 +17,7 @@ export const UPDATE_SELECTEDBOARD = "UPDATE_SELECTEDBOARD";
 
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
 export const DELETE_BOARD = "DELETE_BOARD";
+export const EDIT_BOARD = "EDIT_BOARD";
 export const LOGOUT = "LOGOUT";
 
 export const login = (item) => dispatch => {
@@ -210,7 +211,7 @@ export const getBoardArticles = (id) => dispatch => {
 export const deleteBoard = (id) => dispatch => {
     dispatch({type: FETCHING_DATA})
     console.log("id in delete: ", id)
-    
+
     axiosWithAuth()
         .delete(`/api/boards/${id}`)
             .then(response => {
@@ -252,7 +253,7 @@ export const editBoard = (id, editedBoard) => dispatch => {
         .put(`/api/boards/${id}`, editedBoard)
             .then(response => {
                 console.log("response from edit board: ", response)
-                getAllBoards();
+                dispatch({type: EDIT_BOARD, payload: editedBoard})
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})

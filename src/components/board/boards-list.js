@@ -55,7 +55,7 @@ function BoardList (props) {
     const saveEdit = event => {
         console.log("board to edit in save edit: ", boardToEdit);
         props.editBoard(boardToEdit.id, boardToEdit)
-
+        
     }
 
     return (
