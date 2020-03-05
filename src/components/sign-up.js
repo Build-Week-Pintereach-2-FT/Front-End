@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {createNewUser} from "../actions/actions"
+import ImgBit from "../assets/background.png";
 
 import { Button, Form, FormGroup, Label } from 'reactstrap';
 
@@ -19,6 +20,7 @@ function SignUp (props) {
 
     return (
         <div className='form-holder'>
+            <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
             <div className='form-wrapper'>
             <p>Create a new account</p>    
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +64,7 @@ function SignUp (props) {
 
             <div>
                 <img className='form-image'
-                src='https://images.unsplash.com/photo-1558541966-ee7182e26d63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1782&q=80'
+                src='https://images.unsplash.com/photo-1460467820054-c87ab43e9b59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1922&q=80'
                 alt='Enter pic'></img>
              </div>
 

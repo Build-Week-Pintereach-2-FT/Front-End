@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {login} from '../actions/actions';
+import ImgBit from "../assets/background.png";
 
 import { Button, Form, FormGroup, Label} from 'reactstrap';
 
@@ -20,7 +21,7 @@ function SignIn(props) {
   
   return (
     <div className='form-holder'>
-
+      <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
       <div className='form-wrapper'>
         <p>Log in to an existing account</p>    
         <Form onSubmit={handleSubmit(onSubmit)}>
