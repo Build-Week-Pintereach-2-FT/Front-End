@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import {getUserBoards} from '../../actions/actions';
 import {getAllBoards} from '../../actions/actions';

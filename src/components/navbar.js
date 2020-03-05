@@ -9,28 +9,28 @@ export default function NavBar () {
 
                 <li className='nav-item'>
                     <Link className='nav-link' to='/'>
-                        <i class="fas fa-home fa-3x"></i>
+                        <i className="fas fa-home fa-3x"></i>
                         <span className='link-text'>Home</span>
                     </Link>
                 </li>
 
                 <li className='nav-item'>
                     <Link className='nav-link' to='/SignUp'>
-                        <i class="fas fa-user-plus fa-3x"></i>
+                        <i className="fas fa-user-plus fa-3x"></i>
                         <span className='link-text'>Sign Up</span>
                     </Link>
                 </li>
 
                 <li className='nav-item'>
                     <Link className='nav-link' to='/SignIn'>
-                        <i class="fas fa-sign-in-alt fa-3x"></i>
+                        <i className="fas fa-sign-in-alt fa-3x"></i>
                         <span className='link-text'>Sign In</span>
                     </Link>
                 </li>
 
                 <li className='nav-item'>
-                    <Link className='nav-link' to='BoardList'>
-                        <i class="fas fa-clipboard-list fa-3x"></i>
+                    <Link className='nav-link' to='/BoardList'>
+                        <i className="fas fa-clipboard-list fa-3x"></i>
                         <span className='link-text'>Board List</span>
                     </Link>
                 </li>
