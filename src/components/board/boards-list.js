@@ -8,6 +8,7 @@ import {getAllArticles} from '../../actions/actions';
 import {getBoardArticles} from '../../actions/actions';
 import {deleteBoard} from '../../actions/actions';
 import {editBoard} from '../../actions/actions';
+import {setSelectedBoard} from '../../actions/actions';
 
 import history from '../../utils/history';
 
@@ -26,37 +27,24 @@ function BoardList (props) {
     }, [])
 
     const getBoards = () => {
-        console.log(props.user.id)
-       
-        console.log("HISTORY: ", history)
-
-    //     //if user is logged in (user.id is not null), 
-    //     //AND user is on their dashboard (therefore, showing only their boards)
-    //    if ( history.location.pathname === "/UserDashboard") {
-    //          //props.getUserBoards(props.user.id);
-    //          props.getUserBoards();
-    //    }
-    //    else {
-    //         props.getAllBoards();
-    //    }
+        //console.log(props.user.id)
 
         props.getAllBoards();
+       //props.getUserBoards(props.user.id)  <====== ask Tim tomorrow! The new endpoint succeeds, but never returns data? 
  
     }
 
     const handleArticles = (event) => {
-        //props.getAllArticles();
         props.getBoardArticles(event.target.value)
-        console.log("event:", event.target.value)
+        props.setSelectedBoard(event.target.value) //set selected board to global state, to handle easily in article form
+
+        //console.log("event:", event.target.value)
         
         history.push('/ArticleList')
     }
 
     const handleDelete = (event) => {
         props.deleteBoard(event.target.value)
-
-        //console.log("EVENT HANDLE DELETE: ", event.target.value)
-
     }
 
     const editBoard = board => {
@@ -65,7 +53,6 @@ function BoardList (props) {
     }
 
     const saveEdit = event => {
-        //event.preventDefault();
         console.log("board to edit in save edit: ", boardToEdit);
         props.editBoard(boardToEdit.id, boardToEdit)
 
@@ -74,7 +61,7 @@ function BoardList (props) {
     return (
         <div>
             <div>
-            {console.log("Articles after getAllArticles: ", props.articles)}
+            {console.log("Boards on render of board-list", props.boards)}
 
             {props.boards.map(boardEl => (
                 <div key={boardEl.id}>
@@ -124,8 +111,8 @@ const mapStateToProps = state => {
       error: state.error,
       user: state.user,
       boards: state.boards,
-      articles: state.articles
+      articles: state.articles,
     }
   }
   
-  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getAllArticles, getBoardArticles, deleteBoard, editBoard})(BoardList)
+  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getAllArticles, getBoardArticles, deleteBoard, editBoard, setSelectedBoard})(BoardList)

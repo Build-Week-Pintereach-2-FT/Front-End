@@ -13,10 +13,11 @@ function ArticleForm (props) {
       const newArticle = {
         ...data,
         //boardId: create state to see what board we currently clicked into??
-        boardId: 2
+        boardId: props.selectedBoard
         
       }
 
+      console.log("selectedBoard in articleForm: ", props.selectedBoard)
       console.log("newArticle: ", newArticle)
       props.createNewArticle(newArticle);
 
@@ -26,6 +27,7 @@ function ArticleForm (props) {
   console.log(errors);
   
   return (
+
     <form onSubmit={handleSubmit(onSubmit)}>
         <label>Article Name: </label>
       <input 
@@ -63,7 +65,8 @@ function ArticleForm (props) {
 const mapStateToProps = state => {
       return {
         isLoading: state.isLoading,
-        error: state.error
+        error: state.error,
+        selectedBoard: state.selectedBoard
       }
     }
     

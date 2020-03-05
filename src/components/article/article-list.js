@@ -9,6 +9,10 @@ import history from '../../utils/history';
 
 function ArticleList(props) {
 
+    useEffect(() => {
+        props.getBoardArticles(props.selectedBoard)
+    }, [props.selectedBoard])
+
     const handleDelete = (article) => {
         props.deleteArticle(article.id)
         props.getBoardArticles(article.boardId)
@@ -52,7 +56,8 @@ const mapStateToProps = state => {
     return {
       isLoading: state.isLoading,
       error: state.error,
-      articles: state.articles
+      articles: state.articles,
+      selectedBoard: state.selectedBoard
     }
   }
   

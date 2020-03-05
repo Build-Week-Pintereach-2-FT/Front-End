@@ -7,7 +7,8 @@ import {
     SET_BOARDS,
     SET_ARTICLES,
     UPDATE_BOARDS,
-    UPDATE_ARTICLES
+    UPDATE_ARTICLES,
+    UPDATE_SELECTEDBOARD
 } from '../actions/actions';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
     user: {id: null},
     boards: [],
     articles: [],
-    error: null
+    error: null,
+    selectedBoard: null
 }
 
 
@@ -105,6 +107,13 @@ export const reducer = (state = initialState, action) => {
                 articles: [...state.articles, action.payload]
             }
         
+        //update selected board, to keep track of view of articles
+        case UPDATE_SELECTEDBOARD: 
+            return {
+                ...state,
+                selectedBoard: action.payload
+            }
+
         default:
              return state
     }

@@ -13,6 +13,7 @@ export const SET_BOARDS = "SET_BOARDS";
 export const SET_ARTICLES = "SET_ARTICLES";
 export const UPDATE_BOARDS = "UPDATE_BOARDS";
 export const UPDATE_ARTICLES = "UPDATE_ARTICLES";
+export const UPDATE_SELECTEDBOARD = "UPDATE_SELECTEDBOARD";
 
 //fetching arrays/objects/etc (however backend is set up) and then setting that state as well
 
@@ -65,7 +66,7 @@ export const createNewBoard = (item) => dispatch => {
         .post('/api/boards', item)
             .then(response => {
                 console.log(response)
-                dispatch({type: UPDATE_BOARDS, payload: response.data})
+                dispatch({type: UPDATE_BOARDS, payload: response.data[0]})
                 history.push(`/UserDashboard`) //<-- whatever URL they were currently on when adding?
             })
             .catch(error => {
@@ -83,7 +84,7 @@ export const createNewArticle = (item) => dispatch => {
         .post('/api/articles', item)
             .then(response => {
                 console.log(response)
-                dispatch({type: UPDATE_ARTICLES, payload: response.data})
+                dispatch({type: UPDATE_ARTICLES, payload: response.data[0]})
                 history.push(`/ArticleList`) //<-- whatever URL they were currently on when adding?
             })
             .catch(error => {
@@ -139,12 +140,10 @@ export const getUserBoards = (id) => dispatch => {
     dispatch({type: FETCHING_DATA})
 
     axiosWithAuth()
-        .get(`/api/boards/${id}`)
-        //get(`/api/boards/3`)
+        .get(`/api/boards/userboards/${id}`)
+        //.get(`/api/boards/userboards/3`)
             .then(response => {
                 console.log("response from getUserBoards:", response);
-
-                //maybe have a ternary here, if the response type === object and not an array, send data differently
                 dispatch({type: SET_BOARDS, payload: response.data})
 
             })
@@ -228,8 +227,9 @@ export const deleteArticle = (id) => dispatch => {
     axiosWithAuth()
         .delete(`/api/articles/${id}`)
             .then (response => {
-               
-                //getBoardArticles() //need to get all articles again
+               console.log("delete response: ", response)
+                getBoardArticles() //need to get all articles again
+                //make reducer for delete send payload for id, then filter
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})
@@ -251,4 +251,10 @@ export const editBoard = (id, editedBoard) => dispatch => {
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})
             })
+}
+
+//set selected board for view of articles
+export const setSelectedBoard = (id) => dispatch => {
+    dispatch({type: UPDATE_SELECTEDBOARD, payload: id})
+    
 }
