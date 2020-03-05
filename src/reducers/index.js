@@ -8,7 +8,9 @@ import {
     SET_ARTICLES,
     UPDATE_BOARDS,
     UPDATE_ARTICLES,
-    UPDATE_SELECTEDBOARD
+    UPDATE_SELECTEDBOARD,
+    DELETE_ARTICLE,
+    LOGOUT
 } from '../actions/actions';
 
 const initialState = {
@@ -114,6 +116,22 @@ export const reducer = (state = initialState, action) => {
                 selectedBoard: action.payload
             }
 
+        case DELETE_ARTICLE: 
+            return {
+                ...state,
+                articles: state.articles.filter(article => (
+                    article.id !== action.payload
+                ))
+            }
+        case LOGOUT: 
+            return {
+                isLoading: false,
+                user: {id: null},
+                boards: [],
+                articles: [],
+                error: null,
+                selectedBoard: null
+            }
         default:
              return state
     }

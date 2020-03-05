@@ -15,7 +15,8 @@ export const UPDATE_BOARDS = "UPDATE_BOARDS";
 export const UPDATE_ARTICLES = "UPDATE_ARTICLES";
 export const UPDATE_SELECTEDBOARD = "UPDATE_SELECTEDBOARD";
 
-//fetching arrays/objects/etc (however backend is set up) and then setting that state as well
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
+export const LOGOUT = "LOGOUT";
 
 export const login = (item) => dispatch => {
     console.log('LOGIN: ', item);
@@ -228,8 +229,9 @@ export const deleteArticle = (id) => dispatch => {
         .delete(`/api/articles/${id}`)
             .then (response => {
                console.log("delete response: ", response)
-                getBoardArticles() //need to get all articles again
+                //getBoardArticles() //need to get all articles again
                 //make reducer for delete send payload for id, then filter
+                dispatch({type: DELETE_ARTICLE, payload: id})
             })
             .catch(error => {
                 dispatch({type: SET_ERROR, payload: error.data})
@@ -257,4 +259,11 @@ export const editBoard = (id, editedBoard) => dispatch => {
 export const setSelectedBoard = (id) => dispatch => {
     dispatch({type: UPDATE_SELECTEDBOARD, payload: id})
     
+}
+
+//logout
+export const logout = () => dispatch => {
+    dispatch({ type: LOGOUT })
+    window.localStorage.clear();
+    history.push('/');
 }
