@@ -39,8 +39,8 @@ function BoardForm (props) {
                  name='boardDescription' 
                  ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
 
-                {errors.boardTitle && <p>{errors.boardTitle.message}</p>}
-                {errors.boardDesc && <p>{errors.boardDesc.message}</p>}
+                {errors.boardName && <p>{errors.boardName.message}</p>}
+                {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
 
                 <button type='submit'>Create New Board</button>
             </form>

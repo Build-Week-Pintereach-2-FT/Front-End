@@ -31,15 +31,11 @@ function BoardList (props) {
 
         props.getAllBoards();
        //props.getUserBoards(props.user.id)  <====== ask Tim tomorrow! The new endpoint succeeds, but never returns data? 
- 
     }
 
     const handleArticles = (event) => {
         props.getBoardArticles(event.target.value)
         props.setSelectedBoard(event.target.value) //set selected board to global state, to handle easily in article form
-
-        //console.log("event:", event.target.value)
-        
         history.push('/ArticleList')
     }
 
@@ -54,8 +50,7 @@ function BoardList (props) {
 
     const saveEdit = event => {
         console.log("board to edit in save edit: ", boardToEdit);
-        props.editBoard(boardToEdit.id, boardToEdit)
-        
+        props.editBoard(boardToEdit.id, boardToEdit);
     }
 
     return (
@@ -72,7 +67,6 @@ function BoardList (props) {
                     <button onClick={() => editBoard(boardEl)}>Edit</button>
                     <button value={boardEl.id} onClick={handleDelete}>Delete</button>
                     
-
                 </div>
             ))}
             </div>
@@ -93,8 +87,8 @@ function BoardList (props) {
                     onChange={event => setBoardToEdit({...boardToEdit, boardDescription: event.target.value })}
                     ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
    
-                   {errors.boardTitle && <p>{errors.boardTitle.message}</p>}
-                   {errors.boardDesc && <p>{errors.boardDesc.message}</p>}
+                   {errors.boardName && <p>{errors.boardName.message}</p>}
+                   {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
 
                    <button type='submit'>Save</button>
                    <button onClick={() => setEditing(false)}>Cancel</button>
@@ -102,7 +96,6 @@ function BoardList (props) {
             )}
         </div>
     )
-
 }
 
 const mapStateToProps = state => {
