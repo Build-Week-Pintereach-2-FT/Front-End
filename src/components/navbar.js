@@ -5,14 +5,20 @@ import {logout} from '../actions/actions';
 
 function NavBar (props) {
 
-    // const [state, setState] = useState(false);
+    //const [state, setState] = useState(false);
+    // useEffect(() => {
+    //     //state === true ? setState(false) : setState(true)
+    // }, [localStorage.getItem('token')])
+
     // useEffect(() => {
     //     state === true ? setState(false) : setState(true)
+    //     console.log("test")
     // }, [localStorage.getItem('token')])
+
     return (
+    
         <nav className='navbar'>
             <ul className='navbar-nav'>
-
                 <li className='nav-item'>
                     <Link className='nav-link' to='/'>
                         <i class="fas fa-home fa-3x"></i>
@@ -28,7 +34,8 @@ function NavBar (props) {
                 </li>
 
                 {/* if no token (so user is not logged in), show signin/sign up options. Otherwise, show signout */}
-                {localStorage.getItem('token') === null
+                {/* {localStorage.getItem('token') === null */}
+                {props.user.id === null
                     ?
                     <>
                         <li className='nav-item'>
@@ -87,7 +94,7 @@ function NavBar (props) {
 
 const mapStateToProps = state => {
     return {
-
+        user: state.user
     }
   }
   

@@ -12,6 +12,7 @@ import {
     DELETE_ARTICLE,
     DELETE_BOARD, 
     EDIT_BOARD,
+    EDIT_ARTICLE,
     LOGOUT
 } from '../actions/actions';
 
@@ -146,6 +147,20 @@ export const reducer = (state = initialState, action) => {
                      }
                      else {
                          return board;
+                     }
+                })
+            }
+
+        //update state adjusting for edited article
+        case EDIT_ARTICLE:
+            return {
+                ...state,
+                articles: state.articles.map(article => {
+                     if (article.id === action.payload.id) {
+                         return action.payload
+                     }
+                     else {
+                         return article;
                      }
                 })
             }

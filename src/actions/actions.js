@@ -18,6 +18,7 @@ export const UPDATE_SELECTEDBOARD = "UPDATE_SELECTEDBOARD";
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
 export const DELETE_BOARD = "DELETE_BOARD";
 export const EDIT_BOARD = "EDIT_BOARD";
+export const EDIT_ARTICLE = "EDIT_ARTICLE";
 export const LOGOUT = "LOGOUT";
 
 export const login = (item) => dispatch => {
@@ -246,7 +247,7 @@ export const deleteArticle = (id) => dispatch => {
 
 //edit a board 
 export const editBoard = (id, editedBoard) => dispatch => {
-    dispatch({type: FETCHING_DATA})
+    dispatch({type: FETCHING_DATA});
     console.log("id to edit in actions: ", id)
 
     axiosWithAuth()
@@ -259,6 +260,22 @@ export const editBoard = (id, editedBoard) => dispatch => {
                 dispatch({type: SET_ERROR, payload: error.data})
             })
 }
+
+//edit an article
+export const editArticle = (id, editedArticle) => dispatch => {
+    dispatch({type: FETCHING_DATA});
+    
+    axiosWithAuth()
+        .put(`/api/articles/${id}`, editedArticle)
+        .then(response => {
+            console.log("response from edit article: ", response)
+            dispatch({type: EDIT_ARTICLE, payload: editedArticle})
+        })
+        .catch(error => {
+            dispatch({type: SET_ERROR, payload: error.data})
+        })
+}
+
 
 //set selected board for view of articles
 export const setSelectedBoard = (id) => dispatch => {
