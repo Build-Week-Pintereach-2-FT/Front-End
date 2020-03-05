@@ -1,9 +1,9 @@
 import React from "react";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card, CardText, CardBody,
+    CardTitle
   } from 'reactstrap';
-//import { useParams } from "react-router-dom";
+import "./board.css";
 
 export default function Board (props) {
     //console.log("BoardProps ", props.boards);
@@ -14,10 +14,10 @@ export default function Board (props) {
     
     return (
         <div>
-            <Card>
-                <CardBody>
-                    <CardTitle>Name: {props.boardName}</CardTitle>
-                    <CardText>Description: {props.boardDescription}</CardText>
+            <Card className='card-wrapper'>
+                <CardBody className='card-body'>
+                    <CardTitle className='card-title'>Name: {props.boardName}</CardTitle>
+                    <CardText className='card-text'>Description: {props.boardDescription}</CardText>
                 </CardBody>
             </Card>
         </div>

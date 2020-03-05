@@ -23,9 +23,12 @@
 .home-nav {
   text-decoration: none;
   color: blue;
-  margin: 1%;
 }
 
 .form-input {
   margin: 5px;
+}
+
+.temp-h1 {
+  margin: 0;
 }

@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import {connect} from 'react-redux';
 import {login} from '../actions/actions';
 
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 function SignIn(props) {
 
   const { register, handleSubmit, errors } = useForm();
@@ -18,28 +20,36 @@ function SignIn(props) {
   
   return (
     <div className='form-holder'>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input 
+    <div className='form-wrapper'>
+    <p>Login in to an existing account</p>    
+    <Form onSubmit={handleSubmit(onSubmit)}>
+        <FormGroup>
+            <Label for='username'/>    
+            <Input 
             className='form-input'
             type='text' 
             placeholder='username' 
             name='username' 
             ref={register({ required: "Username Required!", minLength: {value: 3, message: "Username too short"} })}/>
+        </FormGroup>
 
-            <input 
-             className='form-input'
-             type='password'
-             placeholder='password'
-             name='password' 
-             ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
+        <FormGroup>
+            <Label for='password'/>  
+            <Input 
+            className='form-input'
+            type='password'
+            placeholder='password'
+            name='password' 
+            ref={register({ required: "Password Required!", minLength: {value: 3, message: "Password too short"} })}/>
+        </FormGroup>
 
-            {errors.username && <p>{errors.username.message}</p>}
-            {errors.password && <p>{errors.password.message}</p>}
+        {errors.username && <p>{errors.username.message}</p>}
+        {errors.password && <p>{errors.password.message}</p>}
 
-            <input type='submit'/>
-        </form>
-
+        <Button type='submit'>Submit</Button>
+    </Form>
     </div>
+</div>
 );
 }
 

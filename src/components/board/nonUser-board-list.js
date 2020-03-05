@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Board from "./board";
+import "./board.css";
 // import { Link } from "react-router-dom";
 // import {connect} from 'react-redux';
 // import {getUserBoards} from '../../actions/actions';
@@ -26,7 +27,8 @@ function NonUserBoardList (props) {
     }, [])
 
     return (
-        <div>
+        <div className='bg-div'>
+        <div className='card-holder'>
             {boardsI.map(boardsEl => {
                 return (
                     <Board 
@@ -36,6 +38,7 @@ function NonUserBoardList (props) {
                 );
             })}
                
+        </div>
         </div>
     )
 

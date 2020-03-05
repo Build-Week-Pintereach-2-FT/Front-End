@@ -23,7 +23,7 @@ function App() {
       <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
 
       <Route exact path='/'>
-          <h1>Homepage stuff</h1>
+          <h1 className='temp-h1'>Homepage stuff</h1>
       </Route>
 
       <Route  path='/SignUp'>
