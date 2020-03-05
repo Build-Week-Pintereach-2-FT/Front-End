@@ -4,16 +4,13 @@ import {
     CardTitle
   } from 'reactstrap';
 import "./board.css";
+import ImgBit from "../../assets/background.png";
 
 export default function Board (props) {
-    //console.log("BoardProps ", props.boards);
-    //const {BoardID} = useParams();
-    //console.log("Boards ID ", BoardID);
-    //const boardBit = props.boards.find( boardEl => boardEl.id === Number(BoardID))
-    //console.log("boardBits ", boardBit)
     
     return (
         <div>
+            <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
             <Card className='card-wrapper'>
                 <CardBody className='card-body'>
                     <CardTitle className='card-title'>Name: {props.boardName}</CardTitle>
