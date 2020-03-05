@@ -2,8 +2,6 @@ import {
     FETCHING_DATA,
     SET_ERROR,
     LOGIN, 
-    NEW_USER,
-    EDIT_USER,
     SET_BOARDS,
     SET_ARTICLES,
     UPDATE_BOARDS,
