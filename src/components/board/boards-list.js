@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import { useForm } from "react-hook-form";
 import {getUserBoards} from '../../actions/actions';
 import {getAllBoards} from '../../actions/actions';
-import {getAllArticles} from '../../actions/actions';
 import {getBoardArticles} from '../../actions/actions';
 import {deleteBoard} from '../../actions/actions';
 import {editBoard} from '../../actions/actions';
@@ -13,7 +11,6 @@ import {setSelectedBoard} from '../../actions/actions';
 import history from '../../utils/history';
 
 function BoardList (props) {
-
 
     const { register, handleSubmit, errors } = useForm();
     const [editing, setEditing] = useState(false);
@@ -27,10 +24,8 @@ function BoardList (props) {
     }, [])
 
     const getBoards = () => {
-        //console.log(props.user.id)
-
-        //props.getAllBoards();
-       props.getUserBoards(props.user.id) // <====== ask Tim tomorrow! The new endpoint succeeds, but never returns data? 
+       //props.getAllBoards(); <---- keep in here commented out, incase we want to go back and have an easy way to see all boards and update/delete
+       props.getUserBoards(props.user.id) 
     }
 
     const handleArticles = (event) => {
@@ -49,7 +44,6 @@ function BoardList (props) {
     }
 
     const saveEdit = event => {
-        console.log("board to edit in save edit: ", boardToEdit);
         props.editBoard(boardToEdit.id, boardToEdit);
     }
 
@@ -108,4 +102,4 @@ const mapStateToProps = state => {
     }
   }
   
-  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getAllArticles, getBoardArticles, deleteBoard, editBoard, setSelectedBoard})(BoardList)
+  export default connect(mapStateToProps, {getAllBoards, getUserBoards, getBoardArticles, deleteBoard, editBoard, setSelectedBoard})(BoardList)
