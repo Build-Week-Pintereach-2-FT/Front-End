@@ -8,15 +8,13 @@ function BoardForm (props) {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (boardData, e) => {
-        console.log("boardData", boardData);
 
         //set up newBoard state to match that on backend by adding a userId
         const newBoard = {
             ...boardData,
             userId: props.user.id
-            //userId: 3 //hardcoded, change later once we can properly store user state
         }
-        console.log("newBoard: ", newBoard)
+
         props.createNewBoard(newBoard);
 
         e.target.reset();
