@@ -58,10 +58,10 @@ function BoardList (props) {
     
             {props.boards.map(boardEl => (
                 <div className="Card" key={boardEl.id}>
-                    <div className="CardText">  
+                     
                     <h2 className="CardHeading margin-buffer">{boardEl.boardName}</h2>
                     <p className="CardDescription">{boardEl.boardDescription}</p>
-                    </div>
+                    
                     <button className="CardButton" value={boardEl.id} onClick={handleArticles}>See articles</button>
                  
                     <button className="CardButton" onClick={() => editBoard(boardEl)}>Edit</button>
