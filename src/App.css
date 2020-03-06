@@ -120,7 +120,7 @@
 }
 
 .CardHeading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: black;
   font-family: 'Fredoka One', cursive;
   margin: 0rem 4rem 0rem 4rem;
@@ -129,7 +129,7 @@
 .CardDescription {
   font-size: 1.5rem;
   font-family: 'Patrick Hand', cursive;
-  margin: 1rem;
+  margin: .5rem;
 }
 
 

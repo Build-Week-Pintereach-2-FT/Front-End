@@ -45,6 +45,7 @@ function ArticleList(props) {
                 <div className="Card">
                     <h2 className="CardHeading">{article.articleName}</h2>
                     <a href={article.linkToArticle} className="CardDescription">{article.linkToArticle}</a>
+                    <p className="CardDescription">Date Published: {article.datePublished}</p>
 
                     <button className="CardButton" onClick={() => editArticle(article)}>Edit</button>
                     <button className="CardButton" value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
