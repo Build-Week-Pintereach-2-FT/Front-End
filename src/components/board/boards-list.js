@@ -7,7 +7,6 @@ import {getBoardArticles} from '../../actions/actions';
 import {deleteBoard} from '../../actions/actions';
 import {editBoard} from '../../actions/actions';
 import {setSelectedBoard} from '../../actions/actions';
-
 import history from '../../utils/history';
 
 function BoardList (props) {
@@ -24,8 +23,8 @@ function BoardList (props) {
     }, [])
 
     const getBoards = () => {
-       //props.getAllBoards(); <---- keep in here commented out, incase we want to go back and have an easy way to see all boards and update/delete
-       props.getUserBoards(props.user.id) 
+       props.getAllBoards(); //<---- keep in here commented out, incase we want to go back and have an easy way to see all boards and update/delete
+       //props.getUserBoards(props.user.id) 
     }
 
     const handleArticles = (event) => {
@@ -49,22 +48,26 @@ function BoardList (props) {
 
     return (
         <div>
-            <div>
+            <h1 className="PageTitle">Your Boards</h1>
+
+            <div className="CardContainer">
             {console.log("Boards on render of board-list", props.boards)}
-
+    
             {props.boards.map(boardEl => (
-                <div key={boardEl.id}>
+                <div className="Card" key={boardEl.id}>
                   
-                    <h2>{boardEl.boardName}</h2>
-                    <button value={boardEl.id} onClick={handleArticles}>See articles</button>
+                    <h2 className="CardHeading">{boardEl.boardName}</h2>
+                    <p className="CardDescription">{boardEl.boardDescription}</p>
+                    <button className="CardButton" value={boardEl.id} onClick={handleArticles}>See articles</button>
 
-                    <button onClick={() => editBoard(boardEl)}>Edit</button>
-                    <button value={boardEl.id} onClick={handleDelete}>Delete</button>
+                    <button className="CardButton" onClick={() => editBoard(boardEl)}>Edit</button>
+                    <button className="CardButton" value={boardEl.id} onClick={handleDelete}>Delete</button>
                     
                 </div>
             ))}
             </div>
             {editing && (
+                <div className="form-holder">
                 <form onSubmit={handleSubmit(saveEdit)}>
                    <input 
                    className='form-input'
@@ -87,6 +90,7 @@ function BoardList (props) {
                    <button type='submit'>Save</button>
                    <button onClick={() => setEditing(false)}>Cancel</button>
                </form>
+               </div>
             )}
         </div>
     )

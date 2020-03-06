@@ -21,7 +21,7 @@ function BoardForm (props) {
     }
 
     return ( 
-        <div>
+        <div className="form-holder">
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input 

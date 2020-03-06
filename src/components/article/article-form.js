@@ -22,9 +22,10 @@ function ArticleForm (props) {
   
   return (
 
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="form-holder" onSubmit={handleSubmit(onSubmit)}>
         <label>Article Name: </label>
       <input 
+           className='form-input'
             type="text" 
             placeholder="Article" 
             name="articleName" 
@@ -32,6 +33,7 @@ function ArticleForm (props) {
             <br />
             <label>Article Link: </label>
       <input 
+            className='form-input'
             type="text" 
             placeholder="Link" 
             name="linkToArticle" 
@@ -39,6 +41,7 @@ function ArticleForm (props) {
             <br />
             <label>Categories: </label>
       <input 
+            className='form-input'
             type="text" 
             placeholder="Categories" 
             name="categories" 
@@ -46,6 +49,7 @@ function ArticleForm (props) {
             <br />
             <label>Date Published: </label>
       <input 
+            className='form-input'
             type="date" 
             placeholder="Date" 
             name="datePublished" 

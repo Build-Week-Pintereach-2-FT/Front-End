@@ -36,23 +36,25 @@ function ArticleList(props) {
         <>
 
         <ArticleForm/>
+
+        <h1 className="PageTitle">Articles</h1>
         
-        <section className="article-list">
-            <h1>Articles</h1>
+        <section className="CardContainer">
     
             {props.articles.map(article => (
-                <>
-                <h2>{article.articleName}</h2>
+                <div className="Card">
+                    <h2 className="CardHeading">{article.articleName}</h2>
+                    <p className="CardDescription">{article.linkToArticle}</p>
 
-                <button onClick={() => editArticle(article)}>Edit</button>
-                <button value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
-                </>
+                    <button className="CardButton" git stonClick={() => editArticle(article)}>Edit</button>
+                    <button className="CardButton" value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
+                </div>
             ))}
         </section>
             
         <div>
         {editing && (
-            <form onSubmit={handleSubmit(saveEdit)}>
+            <form className="form-holder" onSubmit={handleSubmit(saveEdit)}>
                     <label>Article Name: </label>
                     <input 
                         type="text" 
@@ -64,6 +66,7 @@ function ArticleList(props) {
                         <br />
                     <label>Article Link: </label>
                     <input 
+                        className='form-input'
                         type="text" 
                         placeholder="Link" 
                         name="linkToArticle" 
@@ -73,6 +76,7 @@ function ArticleList(props) {
                         <br />
                     <label>Categories: </label>
                     <input 
+                        className='form-input'
                         type="text" 
                         placeholder="Categories" 
                         name="categories"
@@ -82,6 +86,7 @@ function ArticleList(props) {
                         <br />
                     <label>Date Published: </label>
                     <input 
+                        className='form-input'
                         type="date" 
                         placeholder="Date" 
                         name="datePublished" 
