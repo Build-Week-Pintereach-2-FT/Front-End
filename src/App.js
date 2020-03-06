@@ -1,24 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
+
+import NavBar from "./components/navbar";
+import HomePage from "./components/home-page";
+import SignUp from "./components/sign-up";
+import SignIn from "./components/sign-in";
+//import BoardList from "./components/board/boards-list";
+import Board from "./components/board/board";
+import ArticleList from "./components/article/article-list";
+import PrivateRoute from './components/PrivateRoute';
+import UserDashboard from './components/user-dashboard';
+import NonUserBoardList from './components/board/nonUser-board-list';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <NavBar/>
+      
+      <Switch>
+
+      <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
+
+      <Route exact path='/'>
+          <HomePage/>
+      </Route>
+
+      <Route  path='/SignUp'>
+          <SignUp/>
+      </Route>
+
+      <Route  path='/SignIn'>
+          <SignIn/>
+      </Route>
+
+      {/* //react 1  */}
+      <Route  path='/BoardList'>
+          <NonUserBoardList/>
+      </Route>
+
+      <Route  path='/BoardList/:BoardID'>
+          {/* <Board boards={boardsProps}/> */}
+          <Board/>
+      </Route> 
+
+      <Route exact path='/ArticleList' component={ArticleList}/>
+
+      
+   
+      </Switch>
+
     </div>
   );
 }
