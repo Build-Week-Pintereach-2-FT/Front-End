@@ -96,6 +96,7 @@ function BoardList (props) {
                </div>
             )}
         </div>
+        </div>
     )
 }
 
