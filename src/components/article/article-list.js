@@ -5,6 +5,7 @@ import ArticleForm from "./article-form";
 import {connect} from 'react-redux';
 import {deleteArticle} from '../../actions/actions';
 import {editArticle} from '../../actions/actions';
+import ImgBit from "../../assets/background.png";
 
 
 function ArticleList(props) {
@@ -34,8 +35,7 @@ function ArticleList(props) {
 
     return (
         <>
-
-        <ArticleForm/>
+        <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
 
         <h1 className="PageTitle">Articles</h1>
         
@@ -52,9 +52,11 @@ function ArticleList(props) {
             ))}
         </section>
             
-        <div>
+        <div className="form-holder">
         {editing && (
-            <form className="form-holder" onSubmit={handleSubmit(saveEdit)}>
+            <div className="form-wrapper">
+            <p>Edit {articleToEdit.articleName} Article</p>
+            <form onSubmit={handleSubmit(saveEdit)}>
                     <label>Article Name: </label>
                     <input 
                         type="text" 
@@ -100,11 +102,14 @@ function ArticleList(props) {
                     {errors.categories && <p>{errors.categories.message}</p>}
                     
 
-                <button type="submit">Save</button>
-                <button onClick={() => setEditing(false)}>Cancel</button>
+                <button className="form-button" type="submit">Save</button>
+                <button className="form-button" onClick={() => setEditing(false)}>Cancel</button>
             </form>
+            </div>
         )}
         </div>
+
+        <ArticleForm/>
 
         </>
     )

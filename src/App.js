@@ -3,9 +3,10 @@ import { Route, Link, Switch } from "react-router-dom";
 import './App.css';
 
 import NavBar from "./components/navbar";
+import HomePage from "./components/home-page";
 import SignUp from "./components/sign-up";
 import SignIn from "./components/sign-in";
-import BoardList from "./components/board/boards-list";
+//import BoardList from "./components/board/boards-list";
 import Board from "./components/board/board";
 import ArticleList from "./components/article/article-list";
 import PrivateRoute from './components/PrivateRoute';
@@ -23,7 +24,7 @@ function App() {
       <PrivateRoute exact path="/UserDashboard" component={UserDashboard}/>
 
       <Route exact path='/'>
-          <h1>Homepage stuff</h1>
+          <HomePage/>
       </Route>
 
       <Route  path='/SignUp'>
@@ -35,9 +36,9 @@ function App() {
       </Route>
 
       {/* //react 1  */}
-      {/* <Route  path='/BoardList'>
+      <Route  path='/BoardList'>
           <NonUserBoardList/>
-      </Route> */}
+      </Route>
 
       <Route  path='/BoardList/:BoardID'>
           {/* <Board boards={boardsProps}/> */}

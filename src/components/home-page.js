@@ -1,40 +1,29 @@
-import React, { useState } from "react";
-import { Route, Link } from "react-router-dom";
-import SignUp from "./sign-up";
-import SignIn from "./sign-in";
-import BoardList from "./board/boards-list";
-import Board from "./board/board";
-import ArticleList from "./article/article-list";
-
-// const dummydata = [{
-//     name: 'Biology Research',
-//     id: 0,
-//     description: 'Super cool stuff you wouldnt understand'
-// },{
-//     name: 'Game Strategies',
-//     id: 1,
-//     description: 'How to lose more effectively in order to save time'
-// },{
-//     name: 'A wider variety of trees',
-//     id: 2,
-//     description: 'These trees are very poplar!'
-// }];
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import "../home-page.css";
+import ImgBit from "../assets/background.png";
 
 export default function HomePage() {
 
-    //const [boardsProps] = useState(dummydata);
+    let introRef = useRef(null);    
+
+    useEffect(() => {
+        gsap.from('.anim1', {opacity: 0, duration: 1, y: -50});
+    },[]);
 
     return (
-        <div>
-            <div>
-                <Link className='home-nav' to='/'>Home</Link>
-                <Link className='home-nav' to='/SignUp'>SignUp</Link>
-                <Link className='home-nav' to='/SignIn'>SignIn</Link>
-                <Link className='home-nav' to='/BoardList'>Board List</Link>
-                <Link className='home-nav' to='/ArticleList'>Article List</Link>
-                <Link className='home-nav' to='/UserDashboard'>User Dashboards</Link>
+        <div className='home-background'>
+            <img ref={element => {introRef = element}}className='background-image' src={ImgBit} alt='backgroundimg'></img>
+            <div className='home-content'>
+                <h1 className='anim1'><span>Bridging the Gap </span><span>between dream and reality</span></h1>
+                <p>Some cool things about pintereach are that it is cool.</p>
             </div>
-      
+            <div>
+                <img className='home-image'
+                src='https://images.unsplash.com/photo-1458040937381-49c067dfd49a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'
+                alt='Research Pic'>
+                </img>
+            </div>
             
         </div>
     )
