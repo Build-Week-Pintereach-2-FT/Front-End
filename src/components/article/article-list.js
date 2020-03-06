@@ -36,7 +36,6 @@ function ArticleList(props) {
     return (
         <>
         <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
-        <ArticleForm/>
 
         <h1 className="PageTitle">Articles</h1>
         
@@ -46,6 +45,7 @@ function ArticleList(props) {
                 <div className="Card">
                     <h2 className="CardHeading">{article.articleName}</h2>
                     <a href={article.linkToArticle} className="CardDescription">{article.linkToArticle}</a>
+                    <p className="CardDescription">Date Published: {article.datePublished}</p>
 
                     <button className="CardButton" onClick={() => editArticle(article)}>Edit</button>
                     <button className="CardButton" value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
@@ -53,9 +53,11 @@ function ArticleList(props) {
             ))}
         </section>
             
-        <div>
+        <div className="form-holder">
         {editing && (
-            <form className="form-holder" onSubmit={handleSubmit(saveEdit)}>
+            <div className="form-wrapper">
+            <p>Edit {articleToEdit.articleName} Article</p>
+            <form onSubmit={handleSubmit(saveEdit)}>
                     <label>Article Name: </label>
                     <input 
                         type="text" 
@@ -101,11 +103,14 @@ function ArticleList(props) {
                     {errors.categories && <p>{errors.categories.message}</p>}
                     
 
-                <button type="submit">Save</button>
-                <button onClick={() => setEditing(false)}>Cancel</button>
+                <button className="form-button" type="submit">Save</button>
+                <button className="form-button" onClick={() => setEditing(false)}>Cancel</button>
             </form>
+            </div>
         )}
         </div>
+
+        <ArticleForm/>
 
         </>
     )

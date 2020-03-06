@@ -24,8 +24,8 @@ function BoardList (props) {
     }, [])
 
     const getBoards = () => {
-       props.getAllBoards(); //<---- keep in here commented out, incase we want to go back and have an easy way to see all boards and update/delete
-       //props.getUserBoards(props.user.id) 
+       //props.getAllBoards(); //<---- keep in here commented out, incase we want to go back and have an easy way to see all boards and update/delete
+       props.getUserBoards(props.user.id) 
     }
 
     const handleArticles = (event) => {
@@ -58,9 +58,10 @@ function BoardList (props) {
     
             {props.boards.map(boardEl => (
                 <div className="Card" key={boardEl.id}>
-             
+                     
                     <h2 className="CardHeading margin-buffer">{boardEl.boardName}</h2>
                     <p className="CardDescription">{boardEl.boardDescription}</p>
+                    
                     <button className="CardButton" value={boardEl.id} onClick={handleArticles}>See articles</button>
                  
                     <button className="CardButton" onClick={() => editBoard(boardEl)}>Edit</button>
@@ -71,28 +72,31 @@ function BoardList (props) {
             </div>
             {editing && (
                 <div className="form-holder">
-                <form onSubmit={handleSubmit(saveEdit)}>
-                   <input 
-                   className='form-input'
-                   type='text' 
-                   name='boardName' 
-                   value={boardToEdit.boardName} 
-                   onChange={event => setBoardToEdit({...boardToEdit, boardName: event.target.value })}
-                   ref={register({ required: "Title Required!", minLength: {value: 3, message: "Title too short"} })}/>
-   
-                   <textarea
-                    className='form-input' 
-                    name='boardDescription' 
-                    value={boardToEdit.boardDescription} 
-                    onChange={event => setBoardToEdit({...boardToEdit, boardDescription: event.target.value })}
-                    ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
-   
-                   {errors.boardName && <p>{errors.boardName.message}</p>}
-                   {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
+                    <div className='form-wrapper'>
+                    <p>Edit {boardToEdit.boardName} Board</p>
+                        <form className="FormEditBoard" onSubmit={handleSubmit(saveEdit)}>
+                        <input 
+                        className='form-input'
+                        type='text' 
+                        name='boardName' 
+                        value={boardToEdit.boardName} 
+                        onChange={event => setBoardToEdit({...boardToEdit, boardName: event.target.value })}
+                        ref={register({ required: "Title Required!", minLength: {value: 3, message: "Title too short"} })}/>
+        
+                        <textarea
+                            className='form-input' 
+                            name='boardDescription' 
+                            value={boardToEdit.boardDescription} 
+                            onChange={event => setBoardToEdit({...boardToEdit, boardDescription: event.target.value })}
+                            ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
+        
+                        {errors.boardName && <p>{errors.boardName.message}</p>}
+                        {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
 
-                   <button type='submit'>Save</button>
-                   <button onClick={() => setEditing(false)}>Cancel</button>
-               </form>
+                        <button className="form-button" type='submit'>Save</button>
+                        <button className="form-button" onClick={() => setEditing(false)}>Cancel</button>
+                        </form>
+                    </div>
                </div>
             )}
         </div>

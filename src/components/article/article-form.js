@@ -24,6 +24,7 @@ function ArticleForm (props) {
 
     <div className='form-holder'>
       <div className='form-wrapper'>
+      <p>Create a new article</p> 
       <form onSubmit={handleSubmit(onSubmit)}>
           <label>Article Name: </label>
         <input className='form-input'
