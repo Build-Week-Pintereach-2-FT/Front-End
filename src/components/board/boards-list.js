@@ -7,6 +7,7 @@ import {getBoardArticles} from '../../actions/actions';
 import {deleteBoard} from '../../actions/actions';
 import {editBoard} from '../../actions/actions';
 import {setSelectedBoard} from '../../actions/actions';
+import ImgBit from "../../assets/background.png";
 import history from '../../utils/history';
 
 function BoardList (props) {
@@ -48,18 +49,20 @@ function BoardList (props) {
 
     return (
         <div>
+
             <h1 className="PageTitle">Your Boards</h1>
+            <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
+            <div>
 
             <div className="CardContainer">
-            {console.log("Boards on render of board-list", props.boards)}
     
             {props.boards.map(boardEl => (
                 <div className="Card" key={boardEl.id}>
-                  
-                    <h2 className="CardHeading">{boardEl.boardName}</h2>
+             
+                    <h2 className="CardHeading margin-buffer">{boardEl.boardName}</h2>
                     <p className="CardDescription">{boardEl.boardDescription}</p>
                     <button className="CardButton" value={boardEl.id} onClick={handleArticles}>See articles</button>
-
+                 
                     <button className="CardButton" onClick={() => editBoard(boardEl)}>Edit</button>
                     <button className="CardButton" value={boardEl.id} onClick={handleDelete}>Delete</button>
                     

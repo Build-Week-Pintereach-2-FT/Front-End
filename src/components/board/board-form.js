@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import {createNewBoard} from "../../actions/actions"
 import {connect} from 'react-redux';
@@ -21,8 +21,11 @@ function BoardForm (props) {
     }
 
     return ( 
-        <div className="form-holder">
 
+
+        <div className='form-holder'>
+            <div className='form-wrapper'>
+            <p>Create a new board</p> 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input 
                 className='form-input'
@@ -31,8 +34,9 @@ function BoardForm (props) {
                 name='boardName' 
                 ref={register({ required: "Title Required!", minLength: {value: 3, message: "Title too short"} })}/>
 
-                <textarea
+                <input
                  className='form-input' 
+                 type='text'
                  placeholder='Enter Board Description' 
                  name='boardDescription' 
                  ref={register({ required: "Description Required!", minLength: {value: 2, message: "Description too short"} })}/>
@@ -40,9 +44,9 @@ function BoardForm (props) {
                 {errors.boardName && <p>{errors.boardName.message}</p>}
                 {errors.boardDescription && <p>{errors.boardDescription.message}</p>}
 
-                <button type='submit'>Create New Board</button>
+                <button className='form-button' type='submit'>Create New Board</button>
             </form>
-
+            </div>
         </div>
     )
 }

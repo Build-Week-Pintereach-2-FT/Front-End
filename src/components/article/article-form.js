@@ -22,41 +22,41 @@ function ArticleForm (props) {
   
   return (
 
-    <form className="form-holder" onSubmit={handleSubmit(onSubmit)}>
-        <label>Article Name: </label>
-      <input 
-           className='form-input'
-            type="text" 
-            placeholder="Article" 
-            name="articleName" 
-            ref={register} />
-            <br />
-            <label>Article Link: </label>
-      <input 
-            className='form-input'
-            type="text" 
-            placeholder="Link" 
-            name="linkToArticle" 
-            ref={register} />
-            <br />
-            <label>Categories: </label>
-      <input 
-            className='form-input'
-            type="text" 
-            placeholder="Categories" 
-            name="categories" 
-            ref={register} />
-            <br />
-            <label>Date Published: </label>
-      <input 
-            className='form-input'
-            type="date" 
-            placeholder="Date" 
-            name="datePublished" 
-            ref={register} />
-            <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className='form-holder'>
+      <div className='form-wrapper'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Article Name: </label>
+        <input className='form-input'
+              type="text" 
+              placeholder="Article" 
+              name="articleName" 
+              ref={register} />
+              <br />
+              <label>Article Link: </label>
+        <input className='form-input'
+              type="text" 
+              placeholder="Link" 
+              name="linkToArticle" 
+              ref={register} />
+              <br />
+              <label>Categories: </label>
+        <input className='form-input'
+              type="text" 
+              placeholder="Categories" 
+              name="categories" 
+              ref={register} />
+              <br />
+              <label>Date Published: </label>
+        <input className='form-input'
+              type="date" 
+              placeholder="Date" 
+              name="datePublished" 
+              ref={register} />
+              <br />
+        <button className='form-button' type="submit">Submit</button>
+      </form>
+      </div>
+    </div>
   );
 }
 

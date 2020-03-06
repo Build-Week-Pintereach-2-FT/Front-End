@@ -1,21 +1,22 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import {
+    Card, CardText, CardBody,
+    CardTitle
+  } from 'reactstrap';
+import "./board.css";
+import ImgBit from "../../assets/background.png";
 
 export default function Board (props) {
-    console.log("BoardProps ", props.boards);
-    const {BoardID} = useParams();
-    console.log("Boards ID ", BoardID);
-    const boardBit = props.boards.find( boardEl => boardEl.id === Number(BoardID))
-    console.log("boardBits ", boardBit)
     
     return (
         <div>
-            <div>
-            <p>{boardBit.name}</p>
-            <p>{boardBit.description}</p>
-            </div>
-
-            <p>Individual Board</p>
+            <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
+            <Card className='card-wrapper'>
+                <CardBody className='card-body'>
+                    <CardTitle className='card-title'>Name: {props.boardName}</CardTitle>
+                    <CardText className='card-text'>Description: {props.boardDescription}</CardText>
+                </CardBody>
+            </Card>
         </div>
     )
 }

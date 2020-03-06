@@ -5,6 +5,7 @@ import ArticleForm from "./article-form";
 import {connect} from 'react-redux';
 import {deleteArticle} from '../../actions/actions';
 import {editArticle} from '../../actions/actions';
+import ImgBit from "../../assets/background.png";
 
 
 function ArticleList(props) {
@@ -34,7 +35,7 @@ function ArticleList(props) {
 
     return (
         <>
-
+        <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
         <ArticleForm/>
 
         <h1 className="PageTitle">Articles</h1>
