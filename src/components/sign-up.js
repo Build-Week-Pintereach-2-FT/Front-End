@@ -62,6 +62,10 @@ function SignUp (props) {
             </Form>
             </div>
 
+            <div className="AboutUsLink">
+                <a href="https://pintereach2.netlify.com/index.html">Click to see all about us</a>
+            </div>
+
             <div>
                 <img className='form-image'
                 src='https://images.unsplash.com/photo-1460467820054-c87ab43e9b59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1922&q=80'

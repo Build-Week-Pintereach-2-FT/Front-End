@@ -149,3 +149,9 @@
   flex-direction: column;
   
 }
+
+.AboutUsLink a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
