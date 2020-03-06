@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
 import "../home-page.css";
 import ImgBit from "../assets/background.png";
 
 export default function HomePage() {
 
-    
+    let introRef = useRef(null);    
+
+    useEffect(() => {
+        gsap.from('.anim1', {opacity: 0, duration: 1, y: -50});
+    },[]);
 
     return (
         <div className='home-background'>
-            <img className='background-image' src={ImgBit} alt='backgroundimg'></img>
+            <img ref={element => {introRef = element}}className='background-image' src={ImgBit} alt='backgroundimg'></img>
             <div className='home-content'>
                 <h1 className='anim1'><span>Bridging the Gap </span><span>between dream and reality</span></h1>
                 <p>Some cool things about pintereach are that it is cool.</p>
