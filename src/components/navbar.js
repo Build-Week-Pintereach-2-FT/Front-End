@@ -9,6 +9,7 @@ function NavBar (props) {
     
         <nav className='navbar'>
             <ul className='navbar-nav'>
+                
                 <li className='nav-item'>
                     <Link className='nav-link' to='/'>
                         <i className="fas fa-home fa-3x"></i>
