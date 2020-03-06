@@ -44,7 +44,7 @@ function ArticleList(props) {
             {props.articles.map(article => (
                 <div className="Card">
                     <h2 className="CardHeading">{article.articleName}</h2>
-                    <p className="CardDescription">{article.linkToArticle}</p>
+                    <a href={article.linkToArticle} className="CardDescription">{article.linkToArticle}</a>
 
                     <button className="CardButton" onClick={() => editArticle(article)}>Edit</button>
                     <button className="CardButton" value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
