@@ -21,8 +21,9 @@ function BoardForm (props) {
     }
 
     return ( 
-        <div className='form-holder'>
 
+
+        <div className='form-holder'>
             <div className='form-wrapper'>
             <p>Create a new board</p> 
             <form onSubmit={handleSubmit(onSubmit)}>
