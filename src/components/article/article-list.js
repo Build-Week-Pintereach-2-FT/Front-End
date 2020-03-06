@@ -46,7 +46,7 @@ function ArticleList(props) {
                     <h2 className="CardHeading">{article.articleName}</h2>
                     <p className="CardDescription">{article.linkToArticle}</p>
 
-                    <button className="CardButton" git stonClick={() => editArticle(article)}>Edit</button>
+                    <button className="CardButton" onClick={() => editArticle(article)}>Edit</button>
                     <button className="CardButton" value={article.id} onClick={() => {handleDelete(article)}}>Delete</button>
                 </div>
             ))}
